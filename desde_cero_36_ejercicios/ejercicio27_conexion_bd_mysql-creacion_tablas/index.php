@@ -1,18 +1,6 @@
 <?php 
-
-/* validar formulario por medio de reglas de uso definidas:
-
-Nombre: Solo puede estar formado por letras y tener longitud máxima de 20 caracteres.
-
-Apellidos: Solo puede estar formado por letras
-
-Biografia: No puede estar vacio
-
-Email: ser email valido
-
-Contraseña: Longitud mayor de 6 caracteres
-
-Imagen: Puede estar vacia */
+require_once 'conexion.php';
+/* conectarse a bd mysql, crear tabla de usuarios con los mismo del ejercicio anterior */
 
  ?>
 
