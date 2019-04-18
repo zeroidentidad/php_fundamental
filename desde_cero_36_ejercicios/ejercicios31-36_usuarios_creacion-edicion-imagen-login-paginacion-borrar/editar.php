@@ -83,7 +83,7 @@ if(isset($_POST["submit"])){
 		}
 		
 		if($dir){
-			$filename = time()."-".$_FILES["imagen"]["nombre"];
+			$filename = time()."-".$_FILES["imagen"]["name"];
 			$mover = move_uploaded_file($_FILES["imagen"]["tmp_name"], "uploads/".$filename);
 			
 			$imagen = $filename;
@@ -99,7 +99,7 @@ if(isset($_POST["submit"])){
 	
 	// Update usuario en la BD
 	if(count($errors)==0){
-		$sql = "UPDATE usuarios set name = '{$_POST["nombre"]}', "
+		$sql = "UPDATE usuarios set nombre = '{$_POST["nombre"]}', "
 		. "apellido = '{$_POST["apellido"]}', "
 		. "bio = '{$_POST["bio"]}', "
 		. "email = '{$_POST["email"]}', ";
@@ -112,7 +112,7 @@ if(isset($_POST["submit"])){
 			$sql.= "imagen = '{$imagen}', ";
 		}
 		
-		$sql.= "role = '{$_POST["rol"]}' WHERE usuario_id = {$usuario["usuario_id"]};";
+		$sql.= "rol = '{$_POST["rol"]}' WHERE usuario_id = {$usuario["usuario_id"]};";
 		
 		$update_user = mysqli_query($db, $sql);
 		

@@ -76,7 +76,7 @@ if(isset($_FILES["imagen"]) && !empty($_FILES["imagen"]["tmp_name"])){
 	}
 
 	if($dir){
-		$filename = time()."-".$_FILES["imagen"]["nombre"];
+		$filename = time()."-".$_FILES["imagen"]["name"];
 		$mover = move_uploaded_file($_FILES["imagen"]["tmp_name"], "uploads/".$filename);
 
 		$imagen = $filename;
