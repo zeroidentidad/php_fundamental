@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Modulo Admin</title>
-	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
-</head>
-<body>
-	<div id="cabecera">
-		<h1>Cursos</h1>
-	</div>
+<?php require_once './includes/funciones.php' ?>
+<?php include './includes/cabecera.php' ?>
 	<div id="contenido">
 		<table border="1" id="estructura">
 			<tr>
@@ -23,8 +15,4 @@
 			</tr>
 		</table>
 	</div>
-	<div id="pie">
-		<p>Derechos o Izquierdos</p>
-	</div>
-</body>
-</html>
+<?php require_once './includes/pie.php' ?>
