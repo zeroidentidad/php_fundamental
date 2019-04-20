@@ -64,5 +64,20 @@
 			}
 		}
 		return $cont;
-	}	
+	}
+
+	/**
+	* Devuelve el número de repeticiones para el número de coincidencias almacenadas 
+	* de en el rango de 0 a 6.
+	*
+	*/
+	function obtenerRepeticionCoincidencias($numCoincidencias, $db)
+	{
+		$consulta = "SELECT COUNT(*) as num FROM juegos WHERE coincidencias = {$numCoincidencias}";
+		$resultado = mysqli_query($db, $consulta);
+		$num_coincidencia = mysqli_fetch_assoc($resultado);
+
+		return $num_coincidencia["num"];
+	}
+
 ?>

@@ -18,7 +18,7 @@ function tratar_entrada($valor){
 
 	if (function_exists("mysqli_real_escape_string")) {
 		if (magic_quotes_estatus()) {
-			$consulta = stripslashes($consulta)
+			$consulta = stripslashes($consulta);
 		}
 		$consulta = mysqli_real_escape_string($consulta);
 	}
