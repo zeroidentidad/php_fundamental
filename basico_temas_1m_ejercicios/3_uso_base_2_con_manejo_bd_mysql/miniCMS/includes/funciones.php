@@ -12,6 +12,26 @@ function verificar_consulta($consulta){
 	}
 }
 
+function tratar_entrada($valor){
+
+	$magic_quotes_estatus = get_magic_quotes_gpc();
+
+	if (function_exists("mysqli_real_escape_string")) {
+		if (magic_quotes_estatus()) {
+			$consulta = stripslashes($consulta)
+		}
+		$consulta = mysqli_real_escape_string($consulta);
+	}
+	else{
+		if (!magic_quotes_estatus()) {
+			$consulta = addslashes($consulta);
+		}	
+	}
+
+	return $consulta;
+}
+
+
 function obtener_cursos($db){
 	$sql = "SELECT * FROM cursos  ORDER BY posicion ASC";
 	$cursos = mysqli_query($db, $sql);
