@@ -8,8 +8,7 @@
 				<ul class="cursos">
 					<?php print menu($db, $curso_datos, $capitulo_datos); ?>
 				</ul>
-				<br/>
-				<a href="nuevo_curso.php">Agregar un nuevo curso</a>				
+				<br/>				
 				</td>
 				<td id="pagina">
 					<?php if(!is_null($curso_datos)){ ?>

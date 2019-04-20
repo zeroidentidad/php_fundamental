@@ -46,4 +46,48 @@ function obtener_capitulo_select($db, $capitulo_id){
 	return $capitulo;	
 }
 
+function obtener_pagina($db){
+	global $curso_datos;
+	global $capitulo_datos;
+
+	if (isset($_GET['curso'])) {
+		$curso_datos = obtener_curso_select($db, $_GET['curso']);
+		$capitulo_datos = NULL;
+	}
+	elseif (isset($_GET['capitulo'])) {
+		$capitulo_datos = obtener_capitulo_select($db, $_GET['capitulo']);
+		$curso_datos = NULL;
+	}else{
+		$curso_datos = NULL;
+		$capitulo_datos = NULL;
+	}	
+
+}
+
+function menu($db, $curso_datos, $capitulo_datos){
+	$cursos = obtener_cursos($db);
+	$salida = '';
+	while ($curso = mysqli_fetch_assoc($cursos)) {
+		$salida .= "<br/><li ";
+		if ($curso["id"]==$curso_datos["id"]) {
+			$salida .= "class='selected'";
+		}
+		$salida .= "><a href='contenido.php?curso=".urldecode($curso["id"])."'>".$curso["nombre"]."</a>
+		</li><br/>";
+		$salida .= "<ul class='capitulos'>";
+			$capitulos = obtener_capitulos($db, $curso["id"]);
+			while ($capitulo = mysqli_fetch_assoc($capitulos)) {
+				$salida .= "<li ";
+				if ($capitulo["id"]==$capitulo_datos["id"]) {
+					$salida .= "class='selected'";
+				}						
+				$salida .= "><a href='contenido.php?capitulo=".urldecode($capitulo["id"])."'>".$capitulo["nombre"]."</a>
+				</li>";
+			}
+		$salida .= "</ul>";
+
+	}
+	return $salida;
+}
+
 ?>
