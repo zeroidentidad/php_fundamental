@@ -11,8 +11,14 @@ a{ color:#8D0D19 }
 #contenido { margin: 0px; padding: 0px; height: 600px; width: 100%; background-color:#EEE4B9 }
 #estructura { height: 600px; width: 100px; }
 #pie { height: 2em; margin: 0px; padding: 1em; text-align: center; background-color:#1A446C color: #4292f4;}
+
 #menu { width: 250px; padding: 1em 2em; color: #4292f4; background-color: #8D0D19; }
 #menu a { color: #D4E6F4; text-decoration: none; }
 ul.cursos { padding-left: 0px; list-style: none; }
 ul.capitulos { padding-left: 2em; list-style: square; }
 .selected { font-weight: bold; }
+
+#pagina{ padding-left:2em; vertical-align: top; background-color: #EEE4B9; }
+#pagina h2 {color: #8D0D19; margin-top: 1em; }
+#pagina h3 {color: #8D0D19; margin-top: 1em; }
+#pagina p {color: #8D0D19; }
