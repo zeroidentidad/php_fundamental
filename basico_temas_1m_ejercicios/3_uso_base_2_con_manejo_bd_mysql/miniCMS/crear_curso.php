@@ -1,7 +1,17 @@
 <?php require_once './includes/funciones.php' ?>
 <?php include './includes/cabecera.php' ?>
-<?php 
+<?php
+	$errores = array();
+	$campos = array("nombre", "posicion", "visibilidad");
 
+	validar_campos_obligatorios($campos, $errores);
+		
+	if (!empty($errores)) {
+		header("Location: nuevo_curso.php");
+		exit();
+	}
+ ?>
+<?php 
 	$nombre = tratar_entrada($_POST["nombre"]);
 	$posicion = tratar_entrada($_POST["posicion"]);
 	$visibilidad = tratar_entrada($_POST["visibilidad"]);

@@ -6,5 +6,5 @@
 </head>
 <body>
 	<div id="cabecera">
-		<h1>Cursos</h1>
+		<h1>Cursos en Linea</h1>
 	</div>

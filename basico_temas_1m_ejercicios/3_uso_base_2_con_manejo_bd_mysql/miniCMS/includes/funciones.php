@@ -12,6 +12,14 @@ function verificar_consulta($consulta){
 	}
 }
 
+function validar_campos_obligatorios($campos, $errores){
+	foreach ($campos as $valor) {
+		if (!isset($_POST[$campos])||empty($_POST[$campos])) {
+			$errores[]=$campos;
+		}
+	}	
+}
+
 function tratar_entrada($valor){
 
 	$magic_quotes_estatus = get_magic_quotes_gpc();
@@ -92,7 +100,7 @@ function menu($db, $curso_datos, $capitulo_datos){
 		if ($curso["id"]==$curso_datos["id"]) {
 			$salida .= "class='selected'";
 		}
-		$salida .= "><a href='contenido.php?curso=".urldecode($curso["id"])."'>".$curso["nombre"]."</a>
+		$salida .= "><a href='editar_curso.php?curso=".urldecode($curso["id"])."'>".$curso["nombre"]."</a>
 		</li><br/>";
 		$salida .= "<ul class='capitulos'>";
 			$capitulos = obtener_capitulos($db, $curso["id"]);
