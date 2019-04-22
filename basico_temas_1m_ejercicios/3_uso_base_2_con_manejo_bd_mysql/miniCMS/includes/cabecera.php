@@ -6,5 +6,12 @@
 </head>
 <body>
 	<div id="cabecera">
-		<h1>Cursos en Linea</h1>
+		<table>
+			<td>
+				<img src="./imgs/zero.jpeg" width="40" height="40" alt="">
+			</td>
+			<td>
+				<h1>Cursos en Linea</h1>
+			</td>
+		</table>
 	</div>

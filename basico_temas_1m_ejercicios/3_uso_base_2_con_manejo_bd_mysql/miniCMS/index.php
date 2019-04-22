@@ -25,6 +25,7 @@
 						}		
 					?>
 				</td>
+				<td align="right"><a href="login.php">Acceso Admin</a></td>
 			</tr>
 		</table>
 	</div>

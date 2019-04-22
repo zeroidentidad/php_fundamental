@@ -56,8 +56,8 @@ CREATE TABLE `cursos` (
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
-  `usuario` int(30) NOT NULL,
-  `contrasena` int(30) NOT NULL
+  `usuario` varchar(30) NOT NULL,
+  `contrasena` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --

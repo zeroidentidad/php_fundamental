@@ -1,6 +1,12 @@
 <?php require("includes/session.php");?>
-<?php verificar_sesion(); ?>
 <?php require_once './includes/funciones.php' ?>
+<?php
+	if(isset($_SESSION["usuario_id"]))
+	{
+		header("Location: admin.php");
+		exit();
+	}
+?>
 <?php include './includes/cabecera.php' ?>
 <?php
 if(isset($_POST["usuario"]))
@@ -21,16 +27,19 @@ if(isset($_POST["usuario"]))
 
 	if(empty($errores))
 	{
-		$sql = "INSERT INTO usuarios (usuario, contrasena) VALUES
-					('{$usuario}','{$contrasena}')";
+		$sql = "SELECT * FROM usuarios WHERE usuario='{$usuario}' AND contrasena='{$contrasena}' LIMIT 1";
 		$resultado = mysqli_query($db, $sql);
-		if($resultado)
+		if(mysqli_affected_rows($db)==1)
 		{
-			$mensaje = "<strong>Usuario ha sido creado.</strong>";
+			$usuario = mysqli_fetch_assoc($resultado);
+			$_SESSION["usuario_id"]=$usuario["id"];
+			$_SESSION["usuario"]=$usuario["usuario"];
+			header("Location: admin.php");
+			exit();
 		}
 		else
 		{
-			$mensaje = "<strong>Ha ocurrido algo inesperado.</strong> Error:\n".mysqli_error($db);
+			$mensaje = "<strong>No se pudo acceder.</strong> Error:\n".mysqli_error($db);
 		}
 	}
 	else
@@ -42,12 +51,15 @@ if(isset($_POST["usuario"]))
 <table id="estructura">
 	<tr>
 		<td id="menu">
+			<a href="index.php">Inicio</a>
+			<br/>
+			<br/>
 			<a href="admin.php">Regresar a menú principal</a>
 		</td>
 		<td id="pagina">
-			<h2>Crear usuario</h2>
+			<h2>Administración</h2>
 			<?php if(isset($mensaje)) { echo "<p>".$mensaje."</p>"; } ?>
-			<form action="nuevo_usuario.php" method="post">
+			<form action="login.php" method="post">
 				<table>
 					<tr>
 						<td>Nombre de usuario:</td>
@@ -58,7 +70,7 @@ if(isset($_POST["usuario"]))
 						<td><input type="password" name="contrasena" /></td>
 					</tr>
 				</table>
-				<input type="submit" value="Crear usuario" />
+				<input type="submit" value="Ingresar" />
 			</form>
 		</td>
 	</tr>

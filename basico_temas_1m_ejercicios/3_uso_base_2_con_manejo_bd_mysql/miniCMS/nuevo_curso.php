@@ -1,3 +1,5 @@
+<?php require("includes/session.php");?>
+<?php verificar_sesion(); ?>
 <?php require_once './includes/funciones.php' ?>
 <?php include './includes/cabecera.php' ?>
 <?php obtener_pagina($db); ?>

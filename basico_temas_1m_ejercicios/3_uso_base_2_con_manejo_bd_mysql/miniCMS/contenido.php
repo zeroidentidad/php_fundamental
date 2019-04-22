@@ -1,3 +1,5 @@
+<?php require("includes/session.php");?>
+<?php verificar_sesion(); ?>
 <?php require_once './includes/funciones.php' ?>
 <?php include './includes/cabecera.php' ?>
 <?php obtener_pagina($db); ?>
@@ -9,7 +11,10 @@
 					<?php print menu($db, $curso_datos, $capitulo_datos); ?>
 				</ul>
 				<br/>
-				<a href="nuevo_curso.php">Agregar un nuevo curso</a>				
+				<a href="nuevo_curso.php">Agregar un nuevo curso</a>
+				<br/>			
+				<br/>			
+				<a href="admin.php">Administración</a>			
 				</td>
 				<td id="pagina">
 					<?php if(!is_null($curso_datos)){ ?>
