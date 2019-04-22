@@ -120,4 +120,34 @@ function menu($db, $curso_datos, $capitulo_datos){
 	return $salida;
 }
 
+function menu_publico($db, $curso_datos, $capitulo_datos){
+	$cursos = obtener_cursos($db);
+	$salida = '';
+
+		while ($curso = mysqli_fetch_assoc($cursos)) {
+			$salida .= "<br/><li ";
+			if ($curso["id"]==$curso_datos["id"]) {
+				$salida .= "class='selected'";
+			}
+			$salida .= "><a href='index.php?curso=".urldecode($curso["id"])."'>".$curso["nombre"]."</a>
+			</li><br/>";
+			if ($curso["id"]==$curso_datos["id"]) {
+				$salida .= "<ul class='capitulos'>";
+				$capitulos = obtener_capitulos($db, $curso["id"]);
+				while ($capitulo = mysqli_fetch_assoc($capitulos)) {
+					$salida .= "<li ";
+					if ($capitulo["id"]==$capitulo_datos["id"]) {
+						$salida .= "class='selected'";
+					}						
+					$salida .= "><a href='index.php?capitulo=".urldecode($capitulo["id"])."'>".$capitulo["nombre"]."</a>
+					</li>";
+				}
+				$salida .= "</ul>";
+			}
+		}
+
+	return $salida;
+}
+
+
 ?>
