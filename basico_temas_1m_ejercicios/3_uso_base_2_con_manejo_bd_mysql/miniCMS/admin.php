@@ -1,7 +1,7 @@
 <?php require_once './includes/funciones.php' ?>
 <?php include './includes/cabecera.php' ?>
 	<div id="contenido">
-		<table border="1" id="estructura">
+		<table id="estructura">
 			<tr>
 				<td id="menu">&nbsp;</td>
 				<td id="pagina">

@@ -12,31 +12,33 @@ function verificar_consulta($consulta){
 	}
 }
 
-function validar_campos_obligatorios($campos, $errores){
+function validar_campos_obligatorios($campos){
+	$errores = array();
 	foreach ($campos as $valor) {
-		if (!isset($_POST[$campos])||empty($_POST[$campos])) {
-			$errores[]=$campos;
+		if (!isset($_POST[$valor])||(empty($_POST[$valor])&&!is_numeric($_POST[$valor]))) {
+			$errores[]=$valor;
 		}
-	}	
+	}
+	return $errores;	
 }
 
-function tratar_entrada($valor){
+function tratar_entrada($db, $valor){
 
 	$magic_quotes_estatus = get_magic_quotes_gpc();
 
 	if (function_exists("mysqli_real_escape_string")) {
-		if (magic_quotes_estatus()) {
-			$consulta = stripslashes($consulta);
+		if ($magic_quotes_estatus) {
+			$valor = stripslashes($valor);
 		}
-		$consulta = mysqli_real_escape_string($consulta);
+		$valor = mysqli_real_escape_string($db, $valor);
 	}
 	else{
-		if (!magic_quotes_estatus()) {
-			$consulta = addslashes($consulta);
+		if (!$magic_quotes_estatus) {
+			$valor = addslashes($valor);
 		}	
 	}
 
-	return $consulta;
+	return $valor;
 }
 
 

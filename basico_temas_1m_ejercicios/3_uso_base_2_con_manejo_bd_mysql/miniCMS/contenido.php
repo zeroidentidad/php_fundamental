@@ -2,7 +2,7 @@
 <?php include './includes/cabecera.php' ?>
 <?php obtener_pagina($db); ?>
 	<div id="contenido">
-		<table border="1" id="estructura">
+		<table id="estructura">
 			<tr>
 				<td id="menu">
 				<ul class="cursos">
@@ -19,7 +19,9 @@
 					?>
 					<h3><?=$capitulo_datos["nombre"]; ?></h3>
 					<div id="pagina-contenido">
-					<?=$capitulo_datos["contenido"]; ?>	
+						<?=$capitulo_datos["contenido"]; ?>
+						<br /><br /><br />
+						<a href="editar_capitulo.php?capitulo=<?php print urlencode($capitulo_datos["id"]) ?>">Editar capítulo</a>
 					</div>
 					<?php }
 						else{
