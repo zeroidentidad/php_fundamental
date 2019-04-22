@@ -22,10 +22,10 @@ if (isset($_POST["nombre"])) {
 				WHERE id={$curso_id}";
 		$resultado = mysqli_query($db, $sql);
 		if (mysqli_affected_rows($db)==1) {
-			$mensaje = "<strong>Curso actualizado correctamente.</strong>";
+			$mensaje = "<strong>Curso actualizado correctamente.</strong><br/>";
 		}
 		elseif (mysqli_affected_rows($db)==0) {
-			$mensaje = "<strong>Modificación con mismos valores.</strong>";
+			$mensaje = "<strong>Modificación con mismos valores.</strong><br/>";
 		}
 		else{
 			$mensaje = "<strong>Ha ocurrido algo inesperado.</strong> Error:\n".mysqli_error($db);
@@ -55,7 +55,7 @@ if (isset($_POST["nombre"])) {
 						<label for="posicion">Posición:</label>
 						<select name="posicion">
 							<?php
-							$total_cursos = obtener_cursos($db);
+							$total_cursos = obtener_cursos($db, false);
 							$num_cursos = mysqli_num_rows($total_cursos);
 							for ($i=1; $i <= ($num_cursos+1) ; $i++) { 
 								print "<option value='{$i}'";
@@ -90,7 +90,7 @@ if (isset($_POST["nombre"])) {
 					<h3>Capítulos del curso:</h3>
 					<ul>
 						<?php		
-						$capitulos = obtener_capitulos($db, $curso_datos["id"]);
+						$capitulos = obtener_capitulos($db, $curso_datos["id"], false);
 						while($capitulo = mysqli_fetch_assoc($capitulos))
 						{
 						  echo "<li>

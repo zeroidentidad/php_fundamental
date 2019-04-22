@@ -11,14 +11,11 @@
 				<br/>				
 				</td>
 				<td id="pagina">
-					<?php if(!is_null($curso_datos)){ ?>
-					<h2><?=$curso_datos["nombre"]; ?></h2>
-					<?php }
-						else if(!is_null($capitulo_datos)){ 
+					<?php if(!is_null($capitulo_datos)){ 
 					?>
 					<h3><?=$capitulo_datos["nombre"]; ?></h3>
 					<div id="pagina-contenido">
-						<?=$capitulo_datos["contenido"]; ?>
+						<?=nl2br($capitulo_datos["contenido"]); ?>
 					</div>
 					<?php }
 						else{

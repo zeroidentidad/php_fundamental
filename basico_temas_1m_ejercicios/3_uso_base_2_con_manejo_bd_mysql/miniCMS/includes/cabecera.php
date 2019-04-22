@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Modulo Admin</title>
+	<title>Cursos Online</title>
 	<link rel="stylesheet" type="text/css" href="./css/estilos.css?v=<?php rand(); ?>">
 </head>
 <body>

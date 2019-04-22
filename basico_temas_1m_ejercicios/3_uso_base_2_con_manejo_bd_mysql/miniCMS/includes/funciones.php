@@ -42,16 +42,24 @@ function tratar_entrada($db, $valor){
 }
 
 
-function obtener_cursos($db){
-	$sql = "SELECT * FROM cursos  ORDER BY posicion ASC";
+function obtener_cursos($db, $publico){
+	$sql = "SELECT * FROM cursos ";
+	if ($publico) {
+	$sql.= "WHERE visibilidad=1 "; 
+	}
+	$sql.= "ORDER BY posicion ASC";
 	$cursos = mysqli_query($db, $sql);
 	verificar_consulta($cursos);
 
 	return $cursos;
 }
 
-function obtener_capitulos($db, $curso_id){
-	$sql = "SELECT * FROM capitulos WHERE curso_id=".$curso_id." ORDER BY posicion ASC";
+function obtener_capitulos($db, $curso_id, $publico){
+	$sql = "SELECT * FROM capitulos WHERE curso_id={$curso_id} ";
+	if ($publico) {
+	$sql.= "AND visibilidad=1 "; 
+	}
+	$sql.="ORDER BY posicion ASC";	
 	$capitulos = mysqli_query($db, $sql);
 	verificar_consulta($capitulos);
 
@@ -82,7 +90,7 @@ function obtener_pagina($db){
 
 	if (isset($_GET['curso'])) {
 		$curso_datos = obtener_curso_select($db, $_GET['curso']);
-		$capitulo_datos = NULL;
+		$capitulo_datos = capitulo_por_defecto($db, $_GET['curso']);
 	}
 	elseif (isset($_GET['capitulo'])) {
 		$capitulo_datos = obtener_capitulo_select($db, $_GET['capitulo']);
@@ -94,8 +102,17 @@ function obtener_pagina($db){
 
 }
 
+function capitulo_por_defecto($db, $curso_id){
+	$resultado = obtener_capitulos($db, $curso_id, true);
+	if ($capitulo = mysqli_fetch_assoc($resultado)) {
+		return $capitulo;
+	} else{
+		return NULL;
+	}
+}
+
 function menu($db, $curso_datos, $capitulo_datos){
-	$cursos = obtener_cursos($db);
+	$cursos = obtener_cursos($db, false);
 	$salida = '';
 	while ($curso = mysqli_fetch_assoc($cursos)) {
 		$salida .= "<br/><li ";
@@ -105,7 +122,7 @@ function menu($db, $curso_datos, $capitulo_datos){
 		$salida .= "><a href='editar_curso.php?curso=".urldecode($curso["id"])."'>".$curso["nombre"]."</a>
 		</li><br/>";
 		$salida .= "<ul class='capitulos'>";
-			$capitulos = obtener_capitulos($db, $curso["id"]);
+			$capitulos = obtener_capitulos($db, $curso["id"], false);
 			while ($capitulo = mysqli_fetch_assoc($capitulos)) {
 				$salida .= "<li ";
 				if ($capitulo["id"]==$capitulo_datos["id"]) {
@@ -121,7 +138,7 @@ function menu($db, $curso_datos, $capitulo_datos){
 }
 
 function menu_publico($db, $curso_datos, $capitulo_datos){
-	$cursos = obtener_cursos($db);
+	$cursos = obtener_cursos($db, true);
 	$salida = '';
 
 		while ($curso = mysqli_fetch_assoc($cursos)) {
@@ -133,7 +150,7 @@ function menu_publico($db, $curso_datos, $capitulo_datos){
 			</li><br/>";
 			if ($curso["id"]==$curso_datos["id"]) {
 				$salida .= "<ul class='capitulos'>";
-				$capitulos = obtener_capitulos($db, $curso["id"]);
+				$capitulos = obtener_capitulos($db, $curso["id"], true);
 				while ($capitulo = mysqli_fetch_assoc($capitulos)) {
 					$salida .= "<li ";
 					if ($capitulo["id"]==$capitulo_datos["id"]) {

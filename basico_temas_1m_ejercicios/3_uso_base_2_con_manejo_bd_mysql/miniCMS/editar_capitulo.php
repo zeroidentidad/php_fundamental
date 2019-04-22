@@ -23,10 +23,10 @@ if (isset($_POST["nombre"])) {
 				WHERE id={$capitulo_id}";
 		$resultado = mysqli_query($db, $sql);
 		if (mysqli_affected_rows($db)==1) {
-			$mensaje = "<strong>Capitulo actualizado correctamente.</strong>";
+			$mensaje = "<strong>Capitulo actualizado correctamente.</strong><br/><br/>";
 		}
 		elseif (mysqli_affected_rows($db)==0) {
-			$mensaje = "<strong>Modificación con mismos valores.</strong>";
+			$mensaje = "<strong>Modificación con mismos valores.</strong><br/><br/>";
 		}
 		else{
 			$mensaje = "<strong>Ha ocurrido algo inesperado.<strong> Error:\n".mysqli_error($db);
