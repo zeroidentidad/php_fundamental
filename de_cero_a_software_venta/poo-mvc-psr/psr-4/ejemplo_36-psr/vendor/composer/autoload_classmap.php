@@ -6,4 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Libs\\Imagen\\ImageThumb' => $baseDir . '/libs/imagen/ImageThumb.php',
+    'Libs\\Matematica\\Financiera' => $baseDir . '/libs/matematica/Financiera.php',
+    'Libs\\Seguridad\\Encriptacion' => $baseDir . '/libs/seguridad/Encriptacion.php',
+    'Softcun\\Blog\\Category' => $baseDir . '/softcun/blog/Category.php',
+    'Softcun\\Blog\\Post' => $baseDir . '/softcun/blog/Post.php',
 );

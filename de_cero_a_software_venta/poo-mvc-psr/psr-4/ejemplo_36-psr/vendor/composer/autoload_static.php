@@ -4,35 +4,44 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit629e2977174cb1d98436ea72f014022d
+class ComposerStaticInit3d0e77e76d5531a8bd297189d4a6bf6d
 {
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Softcun\\' => 8,
+        ),
         'L' => 
         array (
             'Libs\\' => 5,
         ),
-        'A' => 
-        array (
-            'Anexsoft\\' => 9,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Softcun\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/softcun',
+        ),
         'Libs\\' => 
         array (
             0 => __DIR__ . '/../..' . '/libs',
         ),
-        'Anexsoft\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/anexsoft',
-        ),
+    );
+
+    public static $classMap = array (
+        'Libs\\Imagen\\ImageThumb' => __DIR__ . '/../..' . '/libs/imagen/ImageThumb.php',
+        'Libs\\Matematica\\Financiera' => __DIR__ . '/../..' . '/libs/matematica/Financiera.php',
+        'Libs\\Seguridad\\Encriptacion' => __DIR__ . '/../..' . '/libs/seguridad/Encriptacion.php',
+        'Softcun\\Blog\\Category' => __DIR__ . '/../..' . '/softcun/blog/Category.php',
+        'Softcun\\Blog\\Post' => __DIR__ . '/../..' . '/softcun/blog/Post.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit629e2977174cb1d98436ea72f014022d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit629e2977174cb1d98436ea72f014022d::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3d0e77e76d5531a8bd297189d4a6bf6d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3d0e77e76d5531a8bd297189d4a6bf6d::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit3d0e77e76d5531a8bd297189d4a6bf6d::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -1,5 +1,5 @@
 <?php
-namespace Anexsoft\Blog;
+namespace Softcun\Blog;
 
 class Category {
     

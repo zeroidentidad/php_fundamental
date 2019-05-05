@@ -1,0 +1,17 @@
+
+su chucho /opt/lampstack7031/use_lampstack  //acceder a espacio virtual de mi lampstack con user como admin
+
+composer init //establecer config por defecto del proyecto para usar composer
+
+En el "composer.json" agregar seccion autoload con psr-4:
+
+    "autoload": {
+        "psr-4": {
+            "Libs\\": "libs/",
+            "Softcun\\": "softcun/"
+        }
+    },
+
+
+composer dump-autoload //generación de carga de clases
+composer dump-autoload -o  //carga de clases optimizada

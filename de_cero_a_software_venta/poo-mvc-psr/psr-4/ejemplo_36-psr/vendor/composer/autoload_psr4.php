@@ -6,6 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Softcun\\' => array($baseDir . '/softcun'),
     'Libs\\' => array($baseDir . '/libs'),
-    'Anexsoft\\' => array($baseDir . '/anexsoft'),
 );

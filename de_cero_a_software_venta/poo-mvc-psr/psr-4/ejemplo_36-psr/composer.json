@@ -1,15 +1,15 @@
 {
-    "name": "hitog/36-psr",
+    "name": "chucho/ejemplo_36-psr",
     "authors": [
         {
-            "name": "Eduardo",
-            "email": "hitogoroshi@outlook.com"
+            "name": "Jesus Ferrer",
+            "email": "email@hotmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
             "Libs\\": "libs/",
-            "Anexsoft\\": "anexsoft/"
+            "Softcun\\": "softcun/"
         }
     },
     "require": {}
