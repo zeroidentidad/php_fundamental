@@ -1,0 +1,16 @@
+{
+    "name": "hitog/36-psr",
+    "authors": [
+        {
+            "name": "Eduardo",
+            "email": "hitogoroshi@outlook.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Libs\\": "libs/",
+            "Anexsoft\\": "anexsoft/"
+        }
+    },
+    "require": {}
+}
