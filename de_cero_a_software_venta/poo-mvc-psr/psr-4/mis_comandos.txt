@@ -1,4 +1,4 @@
-
+su chucho /opt/lappstack7127/use_lappstack
 su chucho /opt/lampstack7031/use_lampstack  //acceder a espacio virtual de mi lampstack con user como admin
 
 composer init //establecer config por defecto del proyecto para usar composer
