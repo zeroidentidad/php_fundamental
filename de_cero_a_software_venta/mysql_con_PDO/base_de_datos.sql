@@ -29,6 +29,8 @@ CREATE TABLE IF NOT EXISTS `empleado_sueldo` (
   PRIMARY KEY (`id`),
   KEY `empleado_sueldo` (`empleado_id`),
   CONSTRAINT `empleado_sueldo` FOREIGN KEY (`empleado_id`) REFERENCES `empleado` (`id`)
+  ON UPDATE RESTRICT
+  ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Volcando estructura para tabla cero_software_venta.profesion
