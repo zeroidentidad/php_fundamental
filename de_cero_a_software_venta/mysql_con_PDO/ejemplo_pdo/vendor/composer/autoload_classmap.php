@@ -9,5 +9,6 @@ return array(
     'App\\Controllers\\HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'App\\Controllers\\UserController' => $baseDir . '/app/controllers/UserController.php',
     'App\\Models\\Empleado' => $baseDir . '/app/models/Empleado.php',
+    'App\\Models\\Profesion' => $baseDir . '/app/models/Profesion.php',
     'Core\\Database' => $baseDir . '/core/Database.php',
 );

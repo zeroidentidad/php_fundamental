@@ -32,6 +32,7 @@ class ComposerStaticInit76714c38118f354cf535a751eba829f2
         'App\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/controllers/HomeController.php',
         'App\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/controllers/UserController.php',
         'App\\Models\\Empleado' => __DIR__ . '/../..' . '/app/models/Empleado.php',
+        'App\\Models\\Profesion' => __DIR__ . '/../..' . '/app/models/Profesion.php',
         'Core\\Database' => __DIR__ . '/../..' . '/core/Database.php',
     );
 

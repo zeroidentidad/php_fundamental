@@ -15,7 +15,18 @@ class Empleado{
         $resultado = [];
 
         try {
-            $sentencia = $this->pdo->prepare('select * from empleado');
+            $sql = "SELECT e.id, e.nombre, e.apellido, e.fecha_nacimiento,
+                    p.nombre profesion, p.sueldo sueldo_inicial,
+                    p.sueldo + IFNULL(sum(es.sueldo), 0) sueldo_final
+                    FROM empleado e
+                    INNER JOIN profesion p
+                    ON e.profesion_id = p.id
+                    LEFT JOIN empleado_sueldo es
+                    ON es.empleado_id = e.id
+                    GROUP BY e.id
+                    ORDER BY e.nombre";
+
+            $sentencia = $this->pdo->prepare($sql);
             $sentencia->execute();
 
             $resultado = $sentencia->fetchAll();
