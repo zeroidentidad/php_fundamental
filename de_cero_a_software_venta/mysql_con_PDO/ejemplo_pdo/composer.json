@@ -1,0 +1,16 @@
+{
+    "name": "chucho/ejemplo_pdo",
+    "authors": [
+        {
+            "name": "Jesus Ferrer",
+            "email": "mail@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Core\\": "core/"
+        }
+    },
+    "require": {}
+}
