@@ -29,7 +29,7 @@ class HomeController {
             $modelo = $this->empleado->obtener($_GET['id']);
         }
 
-        $nuevo = empty($model->id);
+        $nuevo = empty($modelo->id);
       /*$modelo = $this->empleado->listar();*/
 
         require_once _VIEW_PATH_ . 'header.php';
@@ -67,5 +67,5 @@ class HomeController {
             header('location: ?c=Home');
         }
     }   
-    
+
 }
