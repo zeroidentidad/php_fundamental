@@ -1,0 +1,57 @@
+{% extends "partials/layout.twig" %}
+{% block content %}
+    <h1 class="page-header">
+        <a href="{{'cliente/crud'|url}}" class="btn btn-default pull-right">Nuevo</a>
+        Clientes
+    </h1>
+
+    <ol class="breadcrumb">
+        <li class="active">Clientes</li>
+    </ol>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th style="width:40px;"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in 0..9 %}
+            <tr>
+                <td>
+                    <a href="{{ 'cliente/crud'|url }}">Nombre {{ i }}</a>
+                </td>
+                <td>Dirección {{ i }}</td>
+                <td>
+                    <button type="button" class="btn btn-danger btn-block btn-xs">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div id="modal-importar" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Importación masiva de productos</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Archivo</label>
+                        <input type="file" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Importar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+{% endblock %}

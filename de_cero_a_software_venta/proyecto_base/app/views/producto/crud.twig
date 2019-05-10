@@ -1,0 +1,51 @@
+{% extends "partials/layout.twig" %}
+{% block content %}
+    <h1 class="page-header">Productos</h1>
+
+    <ol class="breadcrumb">
+        <li><a href="{{ 'producto'|url }}">Productos</a></li>
+        <li class="active">
+            CRUD
+        </li>
+    </ol>
+
+    <form method="post" action="{{ 'producto/guardar'|url }}">
+        <div class="alert-container"></div>
+        <input type="hidden" class="form-control" name="id" value="" />
+        <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" name="nombre" value="" />
+            <span data-key="nombre" class="form-validation-failed"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Marca</label>
+            <input type="text" class="form-control" name="marca" value="" />
+            <span data-key="marca" class="form-validation-failed"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Costo</label>
+            <input type="text" class="form-control" name="costo" value="" />
+            <span data-key="costo" class="form-validation-failed"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Precio</label>
+            <input type="text" class="form-control" name="precio" value="" />
+            <span data-key="precio" class="form-validation-failed"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Foto</label>
+            <input type="file" class="form-control" name="foto" />
+            <span data-key="foto" class="form-validation-failed"></span>
+        </div>
+
+        <div class="thumbnail"></div>
+
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit" data-ajax="true">Guardar</button>
+        </div>        
+    </form>
+{% endblock %}
