@@ -4,11 +4,11 @@ return [
     'database' => [
         'driver'    => 'mysql',
         'host'      => 'localhost',
-        'database'  => 'anexseller',
-        'username'  => 'root',
-        'password'  => '',
+        'database'  => 'base_software_venta',
+        'username'  => 'remoto',
+        'password'  => 'x1234567',
         'charset'   => 'utf8',
-        'collation' => 'utf8_unicode_ci',
+        'collation' => 'utf8_spanish_ci',
         'prefix'    => '',
     ],
 
@@ -23,7 +23,7 @@ return [
     'environment' => 'dev', // Options: dev, prod, stop
 
     /* Timezone */
-    'timezone' => 'America/Lima',
+    'timezone' => 'America/Mexico_City',
 
     /* Cache */
     'cache' => false

@@ -22,5 +22,5 @@ https://packagist.org/packages/illuminate/database
 <b>Respect Validation</b> entre todos los packages vistos, se optó por usar Respect Validation que pareció bastante sencillo usar y tiene una gran cantidad de validaciones.
 https://packagist.org/packages/respect/validation
 
-<h4>Créditos</h4>
-Arquitectura creada para la comunidad con ayuda el instructor Eduardo Rodríguez Patiño
+<h1>IMPORTANTE:</h1>
+Volver a hacer la autocarga de las clases a descargar al repo con: 'composer dump-autoload -o'
