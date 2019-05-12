@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Repositories\ClienteRepository;
 use Core\{Controller};
 use App\Models\Cliente;
+use App\Validations\ClienteValidation;
 
 class ClienteController extends Controller {
     private $clienteRepo;
@@ -37,6 +38,8 @@ class ClienteController extends Controller {
     }
 
     public function postGuardar() {
+        ClienteValidation::validate($_POST);
+
         $model = new Cliente;
         $model->id = $_POST['id'];
         $model->nombre = $_POST['nombre'];

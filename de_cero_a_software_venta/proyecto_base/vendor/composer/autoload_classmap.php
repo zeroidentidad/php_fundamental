@@ -24,6 +24,7 @@ return array(
     'App\\Repositories\\ClienteRepository' => $baseDir . '/app/repositories/ClienteRepository.php',
     'App\\Repositories\\RolRepository' => $baseDir . '/app/repositories/RolRepository.php',
     'App\\Repositories\\UsuarioRepository' => $baseDir . '/app/repositories/UsuarioRepository.php',
+    'App\\Validations\\ClienteValidation' => $baseDir . '/app/validations/ClienteValidation.php',
     'App\\Validations\\UsuarioValidation' => $baseDir . '/app/validations/UsuarioValidation.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',

@@ -140,6 +140,7 @@ class ComposerStaticInit53f5dadb17595ed854ef5788d67f8630
         'App\\Repositories\\ClienteRepository' => __DIR__ . '/../..' . '/app/repositories/ClienteRepository.php',
         'App\\Repositories\\RolRepository' => __DIR__ . '/../..' . '/app/repositories/RolRepository.php',
         'App\\Repositories\\UsuarioRepository' => __DIR__ . '/../..' . '/app/repositories/UsuarioRepository.php',
+        'App\\Validations\\ClienteValidation' => __DIR__ . '/../..' . '/app/validations/ClienteValidation.php',
         'App\\Validations\\UsuarioValidation' => __DIR__ . '/../..' . '/app/validations/UsuarioValidation.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
