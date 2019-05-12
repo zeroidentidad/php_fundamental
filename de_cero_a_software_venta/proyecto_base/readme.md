@@ -23,4 +23,4 @@ https://packagist.org/packages/illuminate/database
 https://packagist.org/packages/respect/validation
 
 <h1>IMPORTANTE:</h1>
-Volver a hacer la autocarga de las clases a descargar al repo con: 'composer dump-autoload -o'
+Volver a hacer la autocarga de las clases al descargar repo con: 'composer dump-autoload -o'

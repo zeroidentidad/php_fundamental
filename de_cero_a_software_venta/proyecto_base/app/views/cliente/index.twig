@@ -9,49 +9,59 @@
         <li class="active">Clientes</li>
     </ol>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Dirección</th>
-            <th style="width:40px;"></th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for i in 0..9 %}
-            <tr>
-                <td>
-                    <a href="{{ 'cliente/crud'|url }}">Nombre {{ i }}</a>
-                </td>
-                <td>Dirección {{ i }}</td>
-                <td>
-                    <button type="button" class="btn btn-danger btn-block btn-xs">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div id="grid"></div>
+{% endblock %}
+{% block scripts %}
+<script>
+$(document).ready(function(){
+    var data = {
+        class: 'table-striped table-bordered table-condensed table-hover',
+        columnas: [
+            { leyenda: 'Nombre', class: '', ordenable: true, columna: 'nombre' },
+            { leyenda: 'Direccion', class: '', ordenable: true, columna: 'direccion' },
+            { style: 'width:40px;' }
+        ],
+        modelo: [
+            { propiedad: 'nombre', formato: function(tr, obj, valor){
+                return anexGrid_link({
+                    href: '{{ 'cliente/crud/'|url }}' + obj.id,
+                    contenido: valor 
+                });
+            }},
+            { propiedad: 'direccion' },
+            { propiedad: 'id', formato: function(tr, obj, valor){
+                return anexGrid_boton({
+                    type: 'button',
+                    class: 'btn btn-xs btn-danger btn-block btn-eliminar',
+                    value: valor,
+                    contenido: '<i class="fa fa-trash"></i>'
+                });
+            }},
+        ],
+        url: '{{ 'cliente/grid'|url }}',
+        paginable: true,
+        limite: [20, 60, 100],
+        columna: 'id',
+        columna_orden: 'desc'
+    };
 
-    <div id="modal-importar" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Importación masiva de productos</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Archivo</label>
-                        <input type="file" class="form-control" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Importar</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    var grid = $("#grid").anexGrid(data);
+
+    grid.tabla().on('click', '.btn-eliminar', function(){
+        var obj = $(this);
+        obj.attr('disabled', true);
+
+        $.post(base_url('usuario/eliminar'), {
+            id: obj.val()
+        }, function(r){
+            if(r.response){
+                grid.refrescar();
+            } else {
+                alert(r.message);
+            }
+        }, 'json')
+        grid.refrescar();
+    })
+})
+</script>
 {% endblock %}

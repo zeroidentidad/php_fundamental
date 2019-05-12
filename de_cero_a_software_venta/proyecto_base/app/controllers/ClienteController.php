@@ -1,13 +1,15 @@
 <?php
 namespace App\Controllers;
 
-use Core\{Auth, Controller, Log};
+use App\Repositories\ClienteRepository;
+use Core\{Controller};
 
 class ClienteController extends Controller {
-    private $usermodel;
+    private $clienteRepo;
 
     public function __construct() {
         parent::__construct();
+        $this->clienteRepo = new ClienteRepository();
     }
 
     public function getIndex() {
@@ -15,6 +17,10 @@ class ClienteController extends Controller {
             'title' => 'Clientes'
         ]);
     }
+
+    public function postGrid() {
+        print_r($this->clienteRepo->listar());
+    }    
 
     public function getCrud() {
         return $this->render('cliente/crud.twig', [
