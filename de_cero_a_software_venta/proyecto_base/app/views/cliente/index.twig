@@ -51,7 +51,7 @@ $(document).ready(function(){
         var obj = $(this);
         obj.attr('disabled', true);
 
-        $.post(base_url('usuario/eliminar'), {
+        $.post(base_url('cliente/eliminar'), {
             id: obj.val()
         }, function(r){
             if(r.response){

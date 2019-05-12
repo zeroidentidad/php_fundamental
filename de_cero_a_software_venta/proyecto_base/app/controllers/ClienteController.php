@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Repositories\ClienteRepository;
 use Core\{Controller};
+use App\Models\Cliente;
 
 class ClienteController extends Controller {
     private $clienteRepo;
@@ -22,17 +23,42 @@ class ClienteController extends Controller {
         print_r($this->clienteRepo->listar());
     }    
 
-    public function getCrud() {
+    public function getCrud($id=0) {
+        $model = (
+            $id === 0
+                ? new Cliente
+                : $this->clienteRepo->obtener($id)
+        );
+
         return $this->render('cliente/crud.twig', [
-            'title' => 'Clientes'
+            'title' => 'Clientes',
+            'model' => $model
         ]);
     }
 
-    public function postCrud() {
-        
+    public function postGuardar() {
+        $model = new Cliente;
+        $model->id = $_POST['id'];
+        $model->nombre = $_POST['nombre'];
+        $model->direccion = $_POST['direccion'];
+
+        $rh = $this->clienteRepo->guardar($model);
+
+        if($rh->response) {
+            $rh->href = 'cliente';
+        }
+
+        print_r(
+            json_encode($rh)
+        );
     }
 
-    public function postEliminar($id) {
-        
+    public function postEliminar() {
+        print_r(
+            json_encode(
+                $this->clienteRepo->eliminar($_POST['id'])
+            )
+        );
     }
+    
 }

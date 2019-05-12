@@ -11,16 +11,16 @@
 
     <form method="post" action="{{ 'cliente/guardar'|url }}">
         <div class="alert-container"></div>
-        <input type="hidden" class="form-control" name="id" value="" />
+        <input type="hidden" class="form-control" name="id" value="{{ model.id }}" />
         <div class="form-group">
             <label>Nombre</label>
-            <input type="text" class="form-control" name="nombre" value="" />
+            <input type="text" class="form-control" name="nombre" value="{{ model.nombre }}" />
             <span data-key="nombre" class="form-validation-failed"></span>
         </div>
 
         <div class="form-group">
             <label>Dirección</label>
-            <textarea class="form-control" name="direccion" rows="2"></textarea>
+            <textarea class="form-control" name="direccion" rows="2">{{ model.direccion }}</textarea>
             <span data-key="direccion" class="form-validation-failed"></span>
         </div>
 
