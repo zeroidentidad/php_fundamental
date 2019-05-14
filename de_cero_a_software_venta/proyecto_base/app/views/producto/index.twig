@@ -11,40 +11,7 @@
         <li class="active">Productos</li>
     </ol>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th style="width:60px;"></th>
-                <th style="width:100px;">Marca</th>
-                <th>Nombre</th>
-                <th style="width:140px;" class="text-right">Costo</th>
-                <th style="width:140px;" class="text-right">Precio</th>
-                <th style="width:140px;" class="text-right">Ingreso</th>
-                <th style="width:140px;" class="text-right">Utilidad</th>
-                <th style="width:80px;" class="text-right">Margen</th>
-                <th style="width:40px;"></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for i in 0..9 %}
-            <tr>
-                <td></td>
-                <td>Marca</td>
-                <td><a href="{{'producto/crud'|url}}">Guitarra eléctrica</a></td>
-                <td class="text-right">USD 100.00</td>
-                <td class="text-right">USD 400.00</td>
-                <td class="text-right">USD 300.00</td>
-                <td class="text-right">USD 200.00</td>
-                <td class="text-right"><small class="label label-info">300 %</small></td>
-                <td>
-                    <button type="button" class="btn btn-danger btn-block btn-xs">
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div id="grid"></div>
 
     <div id="modal-importar" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -66,4 +33,69 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+{% endblock %}
+{% block scripts %}
+<script>
+$(document).ready(function(){
+    var data = {
+        class: 'table-striped table-bordered table-condensed table-hover',
+        columnas: [
+            { leyenda: 'Nombre', class: '', ordenable: true, columna: 'nombre' },
+            { leyenda: 'Marca', class: '', ordenable: true, columna: 'marca' },
+            { leyenda: 'Costo', class: '', ordenable: true, columna: 'costo' },
+            { leyenda: 'Precio', class: '', ordenable: true, columna: 'precio' },
+            { leyenda: 'Utilidad', class: '' },
+            { leyenda: 'Margen', class: '' },
+            { style: 'width:40px;' }
+        ],
+        modelo: [
+            { propiedad: 'nombre', formato: function(tr, obj, valor){
+                return anexGrid_link({
+                    href: '{{ 'producto/crud/'|url }}' + obj.id,
+                    contenido: valor 
+                });
+            }},
+            { propiedad: 'marca' },
+            { propiedad: 'costo', class: 'text-right', formato: function(tr, obj, valor){ return 'MXN '+valor} },
+            { propiedad: 'precio', class: 'text-right', formato: function(tr, obj, valor){ return 'MXN '+valor} },
+            { class: 'text-right', formato: function(tr, obj, valor){ return 'MXN '+Formulas.calcularUtilidad(obj.costo, obj.precio).toFixed(2)} },
+            { class: 'text-right', formato: function(tr, obj, valor){
+                var utilidad = Formulas.calcularMargenUtilidad(obj.costo, obj.precio).toFixed(0)
+                return '<small class="label label-info">'+utilidad+' %</small>' }
+            },
+            { propiedad: 'id', formato: function(tr, obj, valor){
+                return anexGrid_boton({
+                    type: 'button',
+                    class: 'btn btn-xs btn-danger btn-block btn-eliminar',
+                    value: valor,
+                    contenido: '<i class="fa fa-trash"></i>'
+                });
+            }},
+        ],
+        url: '{{ 'producto/grid'|url }}',
+        paginable: true,
+        limite: [20, 60, 100],
+        columna: 'id',
+        columna_orden: 'desc'
+    };
+
+    var grid = $("#grid").anexGrid(data);
+
+    grid.tabla().on('click', '.btn-eliminar', function(){
+        var obj = $(this);
+        obj.attr('disabled', true);
+
+        $.post(base_url('cliente/eliminar'), {
+            id: obj.val()
+        }, function(r){
+            if(r.response){
+                grid.refrescar();
+            } else {
+                alert(r.message);
+            }
+        }, 'json')
+        grid.refrescar();
+    })
+})
+</script>
 {% endblock %}
