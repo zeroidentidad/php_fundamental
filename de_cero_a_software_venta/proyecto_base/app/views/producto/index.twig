@@ -15,22 +15,23 @@
 
     <div id="modal-importar" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <form class="modal-content" method="post" action="{{ 'producto/importar'|url }}">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Importación masiva de productos</h4>
+                    <h4 class="modal-title">Importar de CSV</h4>
                 </div>
                 <div class="modal-body">
+                    <div class="alert-container"></div>
                     <div class="form-group">
                         <label>Archivo</label>
-                        <input type="file" class="form-control" />
+                        <input type="file" name="archivo" class="form-control" />
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Importar</button>
+                    <button type="submit" data-ajax="true" class="btn btn-primary">Importar</button>
                 </div>
-            </div><!-- /.modal-content -->
+            </form><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 {% endblock %}
@@ -40,6 +41,7 @@ $(document).ready(function(){
     var data = {
         class: 'table-striped table-bordered table-condensed table-hover',
         columnas: [
+            { style: 'width:60px;' },
             { leyenda: 'Nombre', class: '', ordenable: true, columna: 'nombre' },
             { leyenda: 'Marca', class: '', ordenable: true, columna: 'marca' },
             { leyenda: 'Costo', class: '', ordenable: true, columna: 'costo' },
@@ -49,6 +51,10 @@ $(document).ready(function(){
             { style: 'width:40px;' }
         ],
         modelo: [
+            { propiedad: 'foto', formato: function(tr, obj, valor){
+                        if(valor == null) return;
+                        return '<img src="' + base_url('public/' + valor) + '" class="img-responsive" />';
+                    }},
             { propiedad: 'nombre', formato: function(tr, obj, valor){
                 return anexGrid_link({
                     href: '{{ 'producto/crud/'|url }}' + obj.id,
@@ -85,7 +91,7 @@ $(document).ready(function(){
         var obj = $(this);
         obj.attr('disabled', true);
 
-        $.post(base_url('cliente/eliminar'), {
+        $.post(base_url('producto/eliminar'), {
             id: obj.val()
         }, function(r){
             if(r.response){

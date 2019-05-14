@@ -5,6 +5,7 @@ use Core\{Auth, Log};
 use App\Helpers\{ResponseHelper,AnexGridHelper};
 use App\Models\{Producto};
 use Exception;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductoRepository {
     private $producto;
@@ -35,16 +36,32 @@ class ProductoRepository {
         return "";
     }
 
-/*     public function guardar(producto $model) : ResponseHelper {
+     public function guardar(Producto $model, array $foto = null) : ResponseHelper {
         $rh = new ResponseHelper;
 
         try {
             $this->producto->id = $model->id;
             $this->producto->nombre = $model->nombre;
-            $this->producto->direccion = $model->direccion;            
+            $this->producto->marca = $model->marca;            
+            $this->producto->costo = $model->costo;            
+            $this->producto->precio = $model->precio;            
 
             if(!empty($model->id)){
                 $this->producto->exists = true;
+            }
+
+            if(!is_null($foto)){
+                $nombre_archivo = sprintf(
+                    'media/producto-%s.%s',
+                    $model->id,
+                    pathinfo($foto['name'], PATHINFO_EXTENSION)
+                );
+
+                $img = Image::make($foto['tmp_name']);
+                $img->resize(500, 500);
+                $img->save('public/' . $nombre_archivo);
+
+                $this->producto->foto = $nombre_archivo;
             }
 
             $this->producto->save();
@@ -56,8 +73,8 @@ class ProductoRepository {
         return $rh;
     }
 
-    public function obtener($id) : producto {
-        $producto = new producto;
+    public function obtener($id) : Producto {
+        $producto = new Producto;
 
         try {
             $producto = $this->producto->find($id);
@@ -79,6 +96,42 @@ class ProductoRepository {
         }
 
         return $rh;
-    } */
+    }
+
+    public function importar(array $archivo) : ResponseHelper {
+        $rh = new ResponseHelper;
+
+        try {
+            $data = [];
+            $fila = 0;
+            if (($gestor = fopen($archivo['tmp_name'], "r")) !== FALSE) {
+                while (($datos = fgetcsv($gestor, 1000, ";")) !== FALSE) { // ","
+                    if($fila > 0) {
+                        $model = new Producto;
+                        // DEBEN VALIDAR ESTO
+                        $model->nombre = $datos[0];
+                        $model->marca  = $datos[1];
+                        $model->costo  = $datos[2];
+                        $model->precio = $datos[3];
+                        $data[] = $model;
+                    }
+
+                    $fila++;
+                }
+
+                fclose($gestor);
+            }
+
+            foreach($data as $d) {
+                $d->save();
+            }
+
+            $rh->setResponse(true);
+        } catch (Exception $e) {
+            Log::error(ProductoRepository::class, $e->getMessage());
+        }
+
+        return $rh;
+    }    
 
 }

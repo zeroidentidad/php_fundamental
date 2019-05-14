@@ -10,6 +10,7 @@
     "twig/twig": "~1.0",
     "monolog/monolog": "^1.21",
     "illuminate/database": "^5.3",
-    "respect/validation": "^1.1"
+    "respect/validation": "^1.1",
+    "intervention/image": "^2.4"
   }
 }
