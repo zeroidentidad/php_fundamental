@@ -71,7 +71,7 @@ class UsuarioController extends Controller {
         );
     }
 
-    public function getEliminar($id) {
+    /*public function getEliminar($id) {
         UrlHelper::redirect('usuario');
-    }
+    } */
 }

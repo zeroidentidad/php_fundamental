@@ -89,7 +89,14 @@ class ProductoController extends Controller {
     }
 
     public function getExportar() {
-        
+        header("Content-type: application/vnd.ms-excel");
+        header("Content-Disposition: attachment;filename=archivo_exportado.xls");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+
+        return $this->render('producto/excel.twig', [
+            'model' => $this->productoRepo->todo()
+        ]);
     }
 
 }

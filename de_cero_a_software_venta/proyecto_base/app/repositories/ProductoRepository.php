@@ -6,6 +6,7 @@ use App\Helpers\{ResponseHelper,AnexGridHelper};
 use App\Models\{Producto};
 use Exception;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProductoRepository {
     private $producto;
@@ -132,6 +133,19 @@ class ProductoRepository {
         }
 
         return $rh;
-    }    
+    }
+    
+    public function todo() : Collection {
+        $result = null;
+
+        try {
+            $result = $this->producto->orderBy('id', 'DESC')
+                           ->get();
+        } catch (Exception $e) {
+            Log::error(ProductoRepository::class, $e->getMessage());
+        }
+
+        return $result;
+    }     
 
 }
