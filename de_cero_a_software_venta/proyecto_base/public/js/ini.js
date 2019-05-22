@@ -166,11 +166,12 @@ if (!String.prototype.render) {
 }
 
 if (!Number.prototype.format) {
-    Number.prototype.format = function (moneySymbol) {
+    Number.prototype.format = function (decimals, moneySymbol) {
+        decimals = decimals || 0;
         moneySymbol = moneySymbol || false;
         moneySymbol = moneySymbol ? '$' : '';
 
-        return moneySymbol + this.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+        return moneySymbol + this.toFixed(decimals).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
     };
 }
 

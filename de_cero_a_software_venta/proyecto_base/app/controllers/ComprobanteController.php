@@ -1,19 +1,25 @@
 <?php
 namespace App\Controllers;
 
-use Core\{Auth, Controller, Log};
+use App\Repositories\ComprobanteRepository;
+use Core\{Controller};
 
 class ComprobanteController extends Controller {
-    private $usermodel;
+    private $comprobanteRepo;
 
     public function __construct() {
         parent::__construct();
+        $this->comprobanteRepo = new ComprobanteRepository();
     }
 
     public function getIndex() {
         return $this->render('comprobante/index.twig', [
             'title' => 'Comprobantes'
         ]);
+    }
+
+    public function postGrid() {
+        print_r($this->comprobanteRepo->listar());
     }
 
     public function getNuevo() {
@@ -32,7 +38,11 @@ class ComprobanteController extends Controller {
         
     }
 
-    public function postEliminar($id){
-
+    public function postAnular(){
+        print_r(
+            json_encode(
+                $this->comprobanteRepo->anular($_POST['id'])
+            )
+        );
     }
 }
