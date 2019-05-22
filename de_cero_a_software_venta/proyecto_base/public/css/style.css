@@ -6,3 +6,6 @@ span.form-validation-failed{color:#bf6a6a;font-size:0.9em;display:block;padding:
 
 /* helpers */
 .mg-right{margin-right:20px;}
+
+/* fixes */
+.easy-autocomplete-container {z-index:9999;}

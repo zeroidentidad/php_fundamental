@@ -3,10 +3,10 @@
         <div class="col-xs-12">
             <div class="row">
                 <div class="col-xs-4">
-                    <input id="cliente" class="form-control" type="text" placeholder="Cliente" value="© Anexsoft INC">
+                    <input id="cliente" class="form-control" type="text" placeholder="Cliente" value="{model.cliente.nombre}">
                 </div>
                 <div class="col-xs-8">
-                    <input class="form-control" type="text" placeholder="Dirección" readonly>
+                    <input class="form-control" type="text" placeholder="Dirección" readonly value="{model.cliente.direccion}">
                 </div>
             </div>
             <hr>
@@ -40,7 +40,7 @@
                                     <i class="glyphicon glyphicon-minus"></i>
                                 </button>
                             </span>
-                                <input name="producto" class="form-control" type="text" readonly placeholder="Nombre del producto" value="asdasd">
+                                <input name="producto" class="form-control" type="text" readonly placeholder="Nombre del producto" value="">
                             </div>
                         </div>
                         <div class="col-xs-1">
@@ -93,4 +93,48 @@
             </ul>
         </div>
     </div>
+    <script>
+        var self = this;
+
+        self.model = new Comprobante();
+
+        self.on('mount', function(){
+            __clienteAutocomplete();
+        })
+
+        function Comprobante() {
+            this.cliente_id;
+            this.cliente = {
+                nombre: null,
+                direccion: null
+            };
+
+            this.sub_total;
+            this.iva;
+            this.total;
+            this.detalle = [];
+        }
+
+        function __clienteAutocomplete(){
+            var client = $("#cliente"),
+                    options = {
+                        url: function(q) {
+                            return base_url('cliente/buscar/' + q);
+                        },
+                        getValue: 'nombre',
+                        list: {
+                            onClickEvent: function() {
+                                var e = client.getSelectedItemData();
+                                self.model.cliente_id = e.id;
+                                self.model.cliente.nombre = e.nombre;
+                                self.model.cliente.direccion = e.direccion;
+
+                                self.update();
+                            }
+                        }
+                    };
+
+            client.easyAutocomplete(options);
+        }
+    </script>    
 </comprobante>

@@ -81,4 +81,20 @@ class ClienteRepository {
         return $rh;
     }
 
+    public function buscar(string $q) : array {
+        $result = [];
+
+        try {
+            $result = $this->cliente
+                           ->where('nombre', 'like', "%$q%")
+                           ->orderBy('nombre')
+                           ->get()
+                           ->toArray();
+        } catch (Exception $e) {
+            Log::error(ClienteRepository::class, $e->getMessage());
+        }
+
+        return $result;
+    }    
+
 }
