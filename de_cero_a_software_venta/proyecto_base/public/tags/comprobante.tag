@@ -12,50 +12,50 @@
             <hr>
             <div class="row">
                 <div class="col-xs-7">
-                    <input id="producto" class="form-control" type="text" placeholder="Nombre del producto">
+                    <input id="producto" class="form-control" type="text" placeholder="Nombre del producto"  value="{producto.nombre}">
                 </div>
                 <div class="col-xs-2">
-                    <input class="form-control" type="text" placeholder="Cantidad">
+                    <input id="cantidad" class="form-control" type="text" placeholder="Cantidad" value="{producto.cantidad}">
                 </div>
                 <div class="col-xs-2">
                     <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon1">USD</span>
-                        <input class="form-control" type="text" placeholder="Precio">
+                        <span class="input-group-addon">MXN</span>
+                        <input id="precio" class="form-control" type="text" placeholder="Precio" value="{producto.precio}">
                     </div>
                 </div>
                 <div class="col-xs-1">
-                    <button class="btn btn-primary form-control" id="btn-agregar">
+                    <button onclick={agregarDetallle} class="btn btn-primary form-control" id="btn-agregar">
                         <i class="glyphicon glyphicon-plus"></i>
                     </button>
                 </div>
             </div>
             <hr>
             <ul id="facturador-detalle" class="list-group">
-                <li class="list-group-item">
+                <li each={model.detalle} class="list-group-item">
                     <div class="row">
                         <div class="col-xs-7">
                             <div class="input-group">
                             <span class="input-group-btn">
-                                <button class="btn btn-danger form-control" onclick="facturador.retirar(0);">
+                                <button class="btn btn-danger form-control" onclick={retirarDetalle}>
                                     <i class="glyphicon glyphicon-minus"></i>
                                 </button>
                             </span>
-                                <input name="producto" class="form-control" type="text" readonly placeholder="Nombre del producto" value="">
+                                <input class="form-control" type="text" readonly placeholder="Nombre del producto" value="{nombre}">
                             </div>
                         </div>
                         <div class="col-xs-1">
-                            <input name="cantidad" class="form-control" type="text" readonly placeholder="Cantidad" value="20">
+                            <input class="form-control" type="text" readonly placeholder="Cantidad" value="{cantidad}">
                         </div>
                         <div class="col-xs-2">
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">$</span>
-                                <input name="precio" class="form-control" type="text" readonly placeholder="Precio" value="20">
+                                <input class="form-control" type="text" readonly placeholder="Precio" value="{precio}">
                             </div>
                         </div>
                         <div class="col-xs-2">
                             <div class="input-group">
                                 <span class="input-group-addon">$</span>
-                                <input class="form-control" type="text" readonly value="400">
+                                <input class="form-control" type="text" readonly value="{total()}">
                             </div>
                         </div>
                     </div>
@@ -66,17 +66,17 @@
                             Sub Total
                         </div>
                         <div class="col-xs-2">
-                            <b>328.00</b>
+                            <b>00.00</b>
                         </div>
                     </div>
                 </li>
                 <li class="list-group-item">
                     <div class="row text-right">
                         <div class="col-xs-10 text-right">
-                            IVA (18%)
+                            IVA (16%)
                         </div>
                         <div class="col-xs-2">
-                            <b>72.00</b>
+                            <b>00.00</b>
                         </div>
                     </div>
                 </li>
@@ -86,7 +86,7 @@
                             Total
                         </div>
                         <div class="col-xs-2">
-                            <b>400.00</b>
+                            <b>00.00</b>
                         </div>
                     </div>
                 </li>
@@ -97,10 +97,29 @@
         var self = this;
 
         self.model = new Comprobante();
+        self.producto = null;
 
         self.on('mount', function(){
             __clienteAutocomplete();
+            __productoAutocomplete();
         })
+
+        agregarDetallle(){
+            self.producto.cantidad = parseInt(self.cantidad.value);
+            self.producto.precio   = parseFloat(self.precio.value);
+            self.model.detalle.push(self.producto);
+
+            self.producto = null;
+            self.update();
+        }
+
+        retirarDetalle(e){
+            var item = e.item,
+                index = self.model.detalle.indexOf(item);
+
+            self.model.detalle.splice(index, 1);
+            self.update();
+        }        
 
         function Comprobante() {
             this.cliente_id;
@@ -115,8 +134,19 @@
             this.detalle = [];
         }
 
+        function Producto(obj){
+            this.id = obj.id;
+            this.nombre = obj.nombre;
+            this.cantidad = obj.cantidad;
+            this.precio = obj.precio;
+            this.cantidad = obj.cantidad;
+            this.total = function(){
+                return this.precio * this.cantidad;
+            }
+        }
+
         function __clienteAutocomplete(){
-            var client = $("#cliente"),
+            var cliente = $("#cliente"),
                     options = {
                         url: function(q) {
                             return base_url('cliente/buscar/' + q);
@@ -124,7 +154,7 @@
                         getValue: 'nombre',
                         list: {
                             onClickEvent: function() {
-                                var e = client.getSelectedItemData();
+                                var e = cliente.getSelectedItemData();
                                 self.model.cliente_id = e.id;
                                 self.model.cliente.nombre = e.nombre;
                                 self.model.cliente.direccion = e.direccion;
@@ -134,7 +164,32 @@
                         }
                     };
 
-            client.easyAutocomplete(options);
+            cliente.easyAutocomplete(options);
         }
+
+        function __productoAutocomplete(){
+            var producto = $("#producto"),
+                    options = {
+                        url: function(q) {
+                            return base_url('producto/buscar/' + q);
+                        },
+                        getValue: 'nombre',
+                        list: {
+                            onClickEvent: function() {
+                                var e = producto.getSelectedItemData();
+                                self.producto = new Producto({
+                                    id: e.id,
+                                    nombre: e.nombre,
+                                    cantidad: 1,
+                                    precio: e.precio
+                                });
+
+                                self.update();
+                            }
+                        }
+                    };
+
+            producto.easyAutocomplete(options);
+        }        
     </script>    
 </comprobante>

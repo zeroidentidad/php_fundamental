@@ -99,4 +99,12 @@ class ProductoController extends Controller {
         ]);
     }
 
+    public function getBuscar($q) {
+        print_r(
+            json_encode(
+                $this->productoRepo->buscar($q)
+            )
+        );
+    }     
+
 }
