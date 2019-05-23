@@ -169,7 +169,7 @@ if (!Number.prototype.format) {
     Number.prototype.format = function (decimals, moneySymbol) {
         decimals = decimals || 0;
         moneySymbol = moneySymbol || false;
-        moneySymbol = moneySymbol ? '$' : '';
+        moneySymbol = moneySymbol ? 'USD' : '';
 
         return moneySymbol + this.toFixed(decimals).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
     };

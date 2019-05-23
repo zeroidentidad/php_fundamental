@@ -49,13 +49,13 @@
                         <div class="col-xs-2">
                             <div class="input-group">
                                 <span class="input-group-addon" id="basic-addon1">$</span>
-                                <input class="form-control" type="text" readonly placeholder="Precio" value="{precio}">
+                                <input class="form-control" type="text" readonly placeholder="Precio" value="{precio.format(2)}">
                             </div>
                         </div>
                         <div class="col-xs-2">
                             <div class="input-group">
                                 <span class="input-group-addon">$</span>
-                                <input class="form-control" type="text" readonly value="{total()}">
+                                <input class="form-control" type="text" readonly value="{total().format(2)}">
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                             Sub Total
                         </div>
                         <div class="col-xs-2">
-                            <b>00.00</b>
+                            <b>{model.sub_total.format(2)}</b>
                         </div>
                     </div>
                 </li>
@@ -76,7 +76,7 @@
                             IVA (16%)
                         </div>
                         <div class="col-xs-2">
-                            <b>00.00</b>
+                            <b>{model.iva.format(2)}</b>
                         </div>
                     </div>
                 </li>
@@ -86,7 +86,7 @@
                             Total
                         </div>
                         <div class="col-xs-2">
-                            <b>00.00</b>
+                            <b>{model.total.format(2)}</b>
                         </div>
                     </div>
                 </li>
@@ -110,6 +110,8 @@
             self.model.detalle.push(self.producto);
 
             self.producto = null;
+
+            self.model.calcular();
             self.update();
         }
 
@@ -118,6 +120,8 @@
                 index = self.model.detalle.indexOf(item);
 
             self.model.detalle.splice(index, 1);
+
+            self.model.calcular();
             self.update();
         }        
 
@@ -128,10 +132,28 @@
                 direccion: null
             };
 
-            this.sub_total;
-            this.iva;
-            this.total;
             this.detalle = [];
+
+            this.sub_total = 0;
+            this.iva = 0;
+            this.total = 0;
+
+            this.calcular =  function(){
+                var total = 0,
+                    iva = 0,
+                    subTotal = 0;
+
+                this.detalle.forEach(function(x){
+                    total += x.total();
+                })
+
+                iva = Formulas.calcularIva(total);
+                subTotal = Formulas.calcularMontoSinIva(total);
+
+                this.iva = iva;
+                this.sub_total = subTotal;
+                this.total = total;
+            }                        
         }
 
         function Producto(obj){
