@@ -55,4 +55,41 @@ class ComprobanteRepository {
 
         return $rh;
     }
+
+    public function generar(Comprobante $model, array $detalle) : ResponseHelper {
+        $rh = new ResponseHelper;
+
+        try {
+            //cliente_id, sub_total, iva, total, fecha, anulado
+            $model->sub_total = 0;
+            $model->iva = 0;
+            $model->total = 0;
+            $model->fecha = date('Y-m-d');
+            $model->anulado = 0;
+
+            // orden, total, cantidad, precio, costo, comprobante_id
+            foreach($detalle as $k => $d) {
+                $d->orden = $k;
+                $d->total = $d->cantidad * $d->precio;
+                $model->total += $d->total;
+            }
+
+            // SubTotal
+            $model->sub_total = $model->total / 1.16;
+            $model->iva = $model->total - $model->sub_total;
+
+            // Genera el comprobante
+            $model->save();
+
+            // Guarda el detalle
+            $model->detalle()->saveMany($detalle);
+
+            $rh->setResponse(true);
+        } catch (Exception $e) {
+            Log::error(ProductoRepository::class, $e->getMessage());
+        }
+
+        return $rh;
+    }
+
 }

@@ -156,6 +156,7 @@ class ComposerStaticInit53f5dadb17595ed854ef5788d67f8630
         'App\\Middlewares\\RoleMiddleware' => __DIR__ . '/../..' . '/app/middlewares/RoleMiddleware.php',
         'App\\Models\\Cliente' => __DIR__ . '/../..' . '/app/models/Cliente.php',
         'App\\Models\\Comprobante' => __DIR__ . '/../..' . '/app/models/Comprobante.php',
+        'App\\Models\\ComprobanteDetalle' => __DIR__ . '/../..' . '/app/models/ComprobanteDetalle.php',
         'App\\Models\\Producto' => __DIR__ . '/../..' . '/app/models/Producto.php',
         'App\\Models\\Rol' => __DIR__ . '/../..' . '/app/models/Rol.php',
         'App\\Models\\Usuario' => __DIR__ . '/../..' . '/app/models/Usuario.php',

@@ -10,4 +10,9 @@ class Comprobante extends Model{
     {
         return $this->belongsTo('App\Models\Cliente');
     }
+
+    public function detalle(){
+        return $this->hasMany('App\Models\ComprobanteDetalle');
+    }    
+
 }

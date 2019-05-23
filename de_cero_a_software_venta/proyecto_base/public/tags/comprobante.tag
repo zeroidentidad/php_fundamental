@@ -91,6 +91,11 @@
                     </div>
                 </li>
             </ul>
+            <div if={model.cliente_id !== null && model.detalle.length > 0} class="form-group">
+                <button onclick={generarComprobante} type="button" class="btn btn-success btn-lg btn-block">
+                    Generar comprobante
+                </button>
+            </div>            
         </div>
     </div>
     <script>
@@ -123,7 +128,20 @@
 
             self.model.calcular();
             self.update();
-        }        
+        }  
+
+        generarComprobante(){
+            $.post(base_url('comprobante/generar'), {
+                cliente_id: self.model.cliente_id,
+                detalle: self.model.detalle
+            }, function(r){
+                if(r.response) {
+                    window.location.href = base_url('comprobante');
+                } else {
+                    alert(r.message);
+                }
+            }, 'json')
+        }              
 
         function Comprobante() {
             this.cliente_id;
@@ -159,6 +177,7 @@
         function Producto(obj){
             this.id = obj.id;
             this.nombre = obj.nombre;
+            this.costo = obj.costo;
             this.cantidad = obj.cantidad;
             this.precio = obj.precio;
             this.cantidad = obj.cantidad;
@@ -203,7 +222,8 @@
                                     id: e.id,
                                     nombre: e.nombre,
                                     cantidad: 1,
-                                    precio: e.precio
+                                    precio: e.precio,
+                                    costo: e.costo
                                 });
 
                                 self.update();

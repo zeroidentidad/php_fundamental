@@ -20,6 +20,7 @@ return array(
     'App\\Middlewares\\RoleMiddleware' => $baseDir . '/app/middlewares/RoleMiddleware.php',
     'App\\Models\\Cliente' => $baseDir . '/app/models/Cliente.php',
     'App\\Models\\Comprobante' => $baseDir . '/app/models/Comprobante.php',
+    'App\\Models\\ComprobanteDetalle' => $baseDir . '/app/models/ComprobanteDetalle.php',
     'App\\Models\\Producto' => $baseDir . '/app/models/Producto.php',
     'App\\Models\\Rol' => $baseDir . '/app/models/Rol.php',
     'App\\Models\\Usuario' => $baseDir . '/app/models/Usuario.php',

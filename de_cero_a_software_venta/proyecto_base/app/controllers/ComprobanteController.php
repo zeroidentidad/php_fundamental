@@ -1,6 +1,8 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\Comprobante;
+use App\Models\ComprobanteDetalle;
 use App\Repositories\ComprobanteRepository;
 use Core\{Controller};
 
@@ -45,4 +47,31 @@ class ComprobanteController extends Controller {
             )
         );
     }
+
+    public function postGenerar(){
+        $model = new Comprobante();
+        $model->cliente_id = $_POST['cliente_id'];
+
+        $detalle = [];
+
+        foreach($_POST['detalle'] as $d) {
+            // comprobante_id, producto_id, cantidad, costo, precio
+            $d = (object)$d;
+
+            $cd = new ComprobanteDetalle();
+            $cd->producto_id = $d->id;
+            $cd->cantidad = $d->cantidad;
+            $cd->costo = $d->costo;
+            $cd->precio = $d->precio;
+
+            $detalle[] = $cd;
+        }
+
+        print_r(
+            json_encode(
+                $this->comprobanteRepo->generar($model, $detalle)
+            )
+        );
+    }    
+
 }
