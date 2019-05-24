@@ -1,0 +1,53 @@
+{% extends "partials/excel_template.twig" %}
+{% block style %}
+    <style>
+        table{width:100%;}
+        table th{text-align:left;}
+        .text-right{text-align:right;}
+    </style>
+{% endblock %}
+{% block content %}
+<h2>{{ model.cliente.nombre }}</h2>
+<h3>{{ model.cliente.direccion }}</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Producto</th>
+            <th class="text-right">Cantidad</th>
+            <th class="text-right">Precio</th>
+            <th class="text-right">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for d in model.detalle %}
+    <tr>
+        <td>{{ d.producto.nombre }}</td>
+        <td class="text-right">{{ d.cantidad }}</td>
+        <td class="text-right">{{ d.precio|number_format(2) }}</td>
+        <td class="text-right">{{ d.total|number_format(2) }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td class="text-right"></td>
+            <td class="text-right">Sub Total</td>
+            <td class="text-right">{{ model.sub_total|number_format(2) }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="text-right"></td>
+            <td class="text-right">IVA</td>
+            <td class="text-right">{{ model.iva|number_format(2) }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="text-right"></td>
+            <td class="text-right">Total</td>
+            <td class="text-right">{{ model.total|number_format(2) }}</td>
+        </tr>
+    </tfoot>
+</table>
+{% endblock %}

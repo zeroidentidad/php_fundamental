@@ -23,6 +23,7 @@
                     { leyenda: 'Sub Total', ordenable: true, columna: 'sub_total', style: 'width:120px;', class: 'text-right' },
                     { leyenda: 'IVA', ordenable: true, columna: 'iva', style: 'width:120px;', class: 'text-right' },
                     { leyenda: 'Total', ordenable: true, columna: 'total', style: 'width:120px;', class: 'text-right' },
+                    { style: 'width:40px;' },
                     { style: 'width:40px;' }
                 ],
                 modelo: [
@@ -45,6 +46,13 @@
                     { propiedad: 'total', class: 'text-right', formato: function(tr, obj, valor){
                         return parseFloat(valor).format(2);
                     } },
+                    { propiedad: 'id', class: 'text-center', formato: function(tr, obj, valor){
+                        if(obj.anulado === 1) return;
+                        return anexGrid_link({
+                            href: '{{ 'comprobante/pdf/'|url }}' + obj.id,
+                            contenido: '<i class="fa fa-download">'
+                        });
+                    }},
                     { propiedad: 'id', class: 'text-center', formato: function(tr, obj, valor){
                         if(obj.anulado === 1) {
                             tr.addClass('text-danger');

@@ -5,6 +5,8 @@ use App\Models\Comprobante;
 use App\Models\ComprobanteDetalle;
 use App\Repositories\ComprobanteRepository;
 use Core\{Controller};
+use Dompdf\Dompdf;
+use Dompdf\Exception;
 
 class ComprobanteController extends Controller {
     private $comprobanteRepo;
@@ -38,7 +40,27 @@ class ComprobanteController extends Controller {
     }
 
     public function getPdf($id) {
-        
+        $model = $this->comprobanteRepo->obtener($id);
+
+        if($model->anulado === 1) {
+            throw new Exception("COMPROBANTE ANULADO");
+        }
+
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml(
+            $this->render('comprobante/pdf.twig', [
+                'model' => $model
+            ])
+        );
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream('comprobante-' . $model->idForView);
     }
 
     public function postAnular(){
