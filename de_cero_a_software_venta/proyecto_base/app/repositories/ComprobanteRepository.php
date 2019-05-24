@@ -92,4 +92,16 @@ class ComprobanteRepository {
         return $rh;
     }
 
+    public function obtener($id) : Comprobante {
+        $model = new Comprobante();
+
+        try {
+            $model = $this->comprobante->find($id);
+        } catch (Exception $e) {
+            Log::error(ComprobanteRepository::class, $e->getMessage());
+        }
+
+        return $model;
+    }    
+
 }

@@ -24,6 +24,9 @@ class Controller {
         // Filter
         $this->provider->addFilter(new \Twig_SimpleFilter('public', ['App\\Helpers\\UrlHelper', 'public']));
         $this->provider->addFilter(new \Twig_SimpleFilter('url', ['App\\Helpers\\UrlHelper', 'base']));
+        $this->provider->addFilter(new \Twig_SimpleFilter('padLeft', function($input, $zeros = 4){
+            return str_pad($input, $zeros, '0', STR_PAD_LEFT);
+        }));
 
         // Functions
         $this->provider->addFunction(new \Twig_SimpleFunction('user', ['Core\\Auth', 'getCurrentUser']));

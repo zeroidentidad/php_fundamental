@@ -28,7 +28,7 @@
                 modelo: [
                     { propiedad: 'id', formato: function(tr, obj, valor){
                         return anexGrid_link({
-                            href: '{{ 'comprobante/crud/'|url }}' + obj.id,
+                            href: '{{ 'comprobante/detalle/'|url }}' + obj.id,
                             contenido: '#' + valor.padLeft(6)
                         });
                     }},

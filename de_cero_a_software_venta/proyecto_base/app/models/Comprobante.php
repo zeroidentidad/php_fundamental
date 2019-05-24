@@ -13,6 +13,11 @@ class Comprobante extends Model{
 
     public function detalle(){
         return $this->hasMany('App\Models\ComprobanteDetalle');
+    }
+    
+    public function getIdForViewAttribute() : string{
+        if(empty($this->id)) return '';
+        else return str_pad($this->id, 6, '0', STR_PAD_LEFT);
     }    
 
 }

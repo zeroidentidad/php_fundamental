@@ -32,7 +32,8 @@ class ComprobanteController extends Controller {
 
     public function getDetalle($id) {
         return $this->render('comprobante/detalle.twig', [
-            'title' => 'Comprobantes'
+            'title' => 'Comprobantes',
+            'model' => $this->comprobanteRepo->obtener($id)
         ]);
     }
 
