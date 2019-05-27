@@ -26,7 +26,21 @@ class ReporteController extends Controller {
 
     public function postVentas_grid() {
         print_r(
-            $this->reporteRepo->listar()
+            $this->reporteRepo->ventasPorMes()
+        );
+    }
+    
+    public function postProductos_grid($y, $m) {
+        print_r(
+            $this->reporteRepo->productosPorMes($y, $m)
+        );
+    }
+    
+    public function getAnios() {
+        print_r(
+            json_encode(
+                $this->reporteRepo->anios()
+            )
         );
     }    
 

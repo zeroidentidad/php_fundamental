@@ -7,12 +7,14 @@
     <div class="well well-sm">
         <div class="row">
             <div class="col-xs-5">
-                <select class="form-control">
-                    <option value="2016">2016</option>
+                <select id="anio" class="form-control">
+                {% for d in 2019..2010 %}
+                    <option value="{{d}}">{{d}}</option>
+                {% endfor %}    
                 </select>
             </div>
             <div class="col-xs-5">
-                <select class="form-control">
+                <select id="mes" class="form-control">
                     <option value="1">Enero</option>
                     <option value="2">Febrero</option>
                     <option value="3">Marzo</option>
@@ -28,33 +30,63 @@
                 </select>
             </div>
             <div class="col-xs-2">
-                <button class="btn btn-primary btn-block">
+                <button id="btn-filtrar" type="button" class="btn btn-primary btn-block">
                     <i class="fa fa-filter"></i> Buscar
                 </button>
             </div>
         </div>
     </div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Producto</th>
-                <th style="width:140px;" class="text-right">Cantidad</th>
-                <th style="width:140px;" class="text-right">Costo</th>
-                <th style="width:140px;" class="text-right">Ingreso</th>
-                <th style="width:140px;" class="text-right">Utilidad</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for i in 0..9 %}
-            <tr>
-                <td>Producto {{ i }}</td>
-                <td class="text-right">30</td>
-                <td class="text-right">USD 1000.00</td>
-                <td class="text-right">USD 3000.00</td>
-                <td class="text-right">USD 2000.00</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div id="grid"></div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function(){
+            $("#btn-filtrar").click(function(){
+                cargarGrilla(
+                    $("#anio").val(),
+                    $("#mes").val()
+                );
+            })
+
+            cargarGrilla(
+                $("#anio").val(),
+                $("#mes").val()
+            );
+        })
+
+        function cargarGrilla(y,m){
+            var data = {
+                class: 'table-striped table-bordered table-condensed table-hover',
+                columnas: [
+                    { leyenda: 'Comprobante', ordenable: true, columna: 'id', style: 'width:140px' },
+                    { leyenda: 'Producto', ordenable: true, columna: 'producto' },
+                    { leyenda: 'Costo', class: 'text-right', ordenable: true, columna: 'costo' },
+                    { leyenda: 'Ingreso', class: 'text-right', ordenable: true, columna: 'total' },
+                    { leyenda: 'Utilidad', class: 'text-right', ordenable: true, columna: 'utilidad' }
+                ],
+                modelo: [
+                    { propiedad: 'id', formato: function(tr, obj, valor){
+                        return '#' + valor.padLeft(6);
+                    }},
+                    { propiedad: 'producto' },
+                    { propiedad: 'costo', class: 'text-right', formato: function(tr, obj, valor){
+                        return parseFloat(valor).format(2);
+                    }},
+                    { propiedad: 'total', class: 'text-right', formato: function(tr, obj, valor){
+                        return parseFloat(valor).format(2);
+                    }},
+                    { propiedad: 'utilidad', class: 'text-right', formato: function(tr, obj, valor){
+                        return parseFloat(valor).format(2);
+                    }},
+                ],
+                url: '{{ 'reporte/productos_grid'|url }}/' + y + '/' + m,
+                paginable: true,
+                limite: [20, 60, 100],
+                columna: 'anio',
+                columna_orden: 'desc'
+            };
+            var grid = $("#grid").anexGrid(data);
+        }
+    </script>
 {% endblock %}

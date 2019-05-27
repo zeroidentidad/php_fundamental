@@ -186,6 +186,7 @@ class ComposerStaticInit53f5dadb17595ed854ef5788d67f8630
         'App\\Models\\ComprobanteDetalle' => __DIR__ . '/../..' . '/app/models/ComprobanteDetalle.php',
         'App\\Models\\Producto' => __DIR__ . '/../..' . '/app/models/Producto.php',
         'App\\Models\\Rol' => __DIR__ . '/../..' . '/app/models/Rol.php',
+        'App\\Models\\SqlViews\\ReporteProducto' => __DIR__ . '/../..' . '/app/models/SqlViews/ReporteProducto.php',
         'App\\Models\\SqlViews\\ReporteVenta' => __DIR__ . '/../..' . '/app/models/SqlViews/ReporteVenta.php',
         'App\\Models\\Usuario' => __DIR__ . '/../..' . '/app/models/Usuario.php',
         'App\\Repositories\\ClienteRepository' => __DIR__ . '/../..' . '/app/repositories/ClienteRepository.php',

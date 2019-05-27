@@ -23,6 +23,7 @@ return array(
     'App\\Models\\ComprobanteDetalle' => $baseDir . '/app/models/ComprobanteDetalle.php',
     'App\\Models\\Producto' => $baseDir . '/app/models/Producto.php',
     'App\\Models\\Rol' => $baseDir . '/app/models/Rol.php',
+    'App\\Models\\SqlViews\\ReporteProducto' => $baseDir . '/app/models/SqlViews/ReporteProducto.php',
     'App\\Models\\SqlViews\\ReporteVenta' => $baseDir . '/app/models/SqlViews/ReporteVenta.php',
     'App\\Models\\Usuario' => $baseDir . '/app/models/Usuario.php',
     'App\\Repositories\\ClienteRepository' => $baseDir . '/app/repositories/ClienteRepository.php',
