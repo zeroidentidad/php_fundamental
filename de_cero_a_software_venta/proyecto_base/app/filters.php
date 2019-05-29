@@ -6,13 +6,19 @@ $router->filter('auth', function(){
 
 // System Role Permission
 $router->filter('isAdmin', function(){
-    \App\Middlewares\RoleMiddleware::isAdmin();
+    if(!\App\Middlewares\RoleMiddleware::isAdmin()){
+        \App\Helpers\UrlHelper::redirect('');
+    };
 });
 
 $router->filter('isSeller', function(){
-    \App\Middlewares\RoleMiddleware::isSeller();
+    if(!\App\Middlewares\RoleMiddleware::isSeller()){
+        \App\Helpers\UrlHelper::redirect('');
+    };
 });
 
 $router->filter('isAnalyst', function(){
-    \App\Middlewares\RoleMiddleware::isAnalyst();
+    if(!\App\Middlewares\RoleMiddleware::isAnalyst()){
+        \App\Helpers\UrlHelper::redirect('');
+    };
 });

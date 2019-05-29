@@ -20,20 +20,30 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ventas <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        {% if isSeller() %}
                         <li><a href="{{'comprobante'|url}}">Comprobantes</a></li>
+                        {% endif %}
+                        {% if isAdmin() %}
                         <li class="divider"></li>
+                        {% endif %}
+                        {% if isAnalyst() %}
                         <li><a href="{{'reporte/ventas'|url}}">Ventas por mes</a></li>
                         <li><a href="{{'reporte/productos'|url}}">Productos por mes</a></li>
+                        {% endif %}
                     </ul>
                 </li>
+                {% if isSeller() %}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mantenimiento <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        {% if isAdmin() %}
                         <li><a href="{{'usuario'|url}}">Usuarios</a></li>
+                        {% endif %}
                         <li><a href="{{'cliente'|url}}">Clientes</a></li>
                         <li><a href="{{'producto'|url}}">Productos</a></li>
                     </ul>
                 </li>
+                {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="navbar-text">Hola, ¡<b>{{ usuario.nombre }}</b>!</li>

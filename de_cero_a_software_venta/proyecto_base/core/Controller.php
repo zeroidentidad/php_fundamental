@@ -30,6 +30,9 @@ class Controller {
 
         // Functions
         $this->provider->addFunction(new \Twig_SimpleFunction('user', ['Core\\Auth', 'getCurrentUser']));
+        $this->provider->addFunction(new \Twig_SimpleFunction('isAdmin', ['App\\Middlewares\\RoleMiddleware', 'isAdmin']));
+        $this->provider->addFunction(new \Twig_SimpleFunction('isSeller', ['App\\Middlewares\\RoleMiddleware', 'isSeller']));
+        $this->provider->addFunction(new \Twig_SimpleFunction('isAnalyst', ['App\\Middlewares\\RoleMiddleware', 'isAnalyst']));        
     }
 
     protected function render(string $view, array $data = []) : string {

@@ -1,12 +1,27 @@
 <?php
 /* Controllers */
+
+$router->group(['before' => 'auth'], function($router){
+
 $router->controller('/home', 'App\\Controllers\\HomeController');
+
+$router->group(['before' => 'isSeller'], function($router){
+    $router->controller('/cliente', 'App\\Controllers\\ClienteController');
+    $router->controller('/comprobante', 'App\\Controllers\\ComprobanteController');
+    $router->controller('/producto', 'App\\Controllers\\ProductoController');
+});    
+
+$router->group(['before' => 'isAnalyst'], function($router){
+    $router->controller('/reporte', 'App\\Controllers\\ReporteController');
+});
+
+$router->group(['before' => 'isAdmin'], function($router){
+    $router->controller('/usuario', 'App\\Controllers\\UsuarioController');
+});
+
+});
+
 $router->controller('/auth', 'App\\Controllers\\AuthController');
-$router->controller('/cliente', 'App\\Controllers\\ClienteController');
-$router->controller('/comprobante', 'App\\Controllers\\ComprobanteController');
-$router->controller('/producto', 'App\\Controllers\\ProductoController');
-$router->controller('/reporte', 'App\\Controllers\\ReporteController');
-$router->controller('/usuario', 'App\\Controllers\\UsuarioController');
 
 $router->get('/', function(){
     if(!\Core\Auth::isLoggedIn()){
