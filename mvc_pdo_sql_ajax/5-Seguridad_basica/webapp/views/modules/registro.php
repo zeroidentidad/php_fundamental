@@ -2,11 +2,18 @@
 
 <form method="post" onsubmit="return validarRegistro()">
 	
-	<input type="text" placeholder="Usuario" name="usuarioRegistro" required>
+	<label for="usuarioRegistro">Usuario</label>
+	<input type="text" placeholder="Máximo 6 caracteres" maxlength="6" name="usuarioRegistro" id="usuarioRegistro" required>
 
-	<input type="password" placeholder="Contraseña" name="passwordRegistro" required>
+	<label for="passwordRegistro">Contraseña</label>
+	<input type="password" placeholder="mínimo 6 caracteres, incluir número(s) y una mayúscula" name="passwordRegistro" id="passwordRegistro" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required>
 
-	<input type="email" placeholder="Email" name="emailRegistro" required>
+	<label for="emailRegistro">Correo electrónico</label>
+	<input type="email" placeholder="escriba su correo electrónico correctamente" name="emailRegistro" id="emailRegistro" required>
+
+	<p style="text-align:center">
+	<input type="checkbox" id="terminos"><a href="#">Acepta términos y condiciones</a>
+	</p>
 
 	<input type="submit" value="Enviar">
 
