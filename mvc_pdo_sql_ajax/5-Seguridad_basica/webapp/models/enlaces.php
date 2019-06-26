@@ -30,6 +30,12 @@ class Paginas{
 		
 		}
 
+		else if($enlaces == "fallo4intentos"){
+
+			$module =  "views/modules/ingresar.php";
+		
+		}
+
 		else if($enlaces == "cambio"){
 
 			$module =  "views/modules/usuarios.php";

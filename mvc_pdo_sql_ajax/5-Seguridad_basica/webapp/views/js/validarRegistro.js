@@ -51,7 +51,7 @@ function validarRegistro() {
 
         if (!expresion.test(password)) {
 
-            $qS("label[for='usuarioRegistro']").innerHTML += "<br>No escriba caracteres especiales.";
+            $qS("label[for='passwordRegistro']").innerHTML += "<br>No escriba caracteres especiales.";
 
             return false;
 

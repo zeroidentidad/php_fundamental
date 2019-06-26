@@ -1,10 +1,12 @@
 <h1>INGRESAR</h1>
 
-	<form method="post">
+	<form method="post" onsubmit="return validarIngreso()">
 		
-		<input type="text" placeholder="Usuario" name="usuarioIngreso" required>
+		<label for="usuarioIngreso">Usuario</label>
+		<input type="text" maxlength="6" placeholder="Usuario" name="usuarioIngreso" id="usuarioIngreso" required>
 
-		<input type="password" placeholder="Contraseña" name="passwordIngreso" required>
+		<label for="passwordIngreso">Contraseña</label>
+		<input type="password" placeholder="Contraseña" name="passwordIngreso" id="passwordIngreso" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required>
 
 		<input type="submit" value="Enviar">
 
@@ -21,5 +23,12 @@ if(isset($_GET["action"])){
 		echo "Error al ingresar";
 	
 	}
+
+	if($_GET["action"] == "fallo4intentos"){
+
+		echo "Ha fallado 4 veces para ingresar, favor llenar el captcha";
+	
+	}	
+
 }
 ?>

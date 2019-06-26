@@ -19,8 +19,10 @@ $mvc->enlacesPaginasController();
  ?>
 </section>
 	
-<script src="views/js/zeroUtil.js"></script>
-<script src="views/js/validarRegistro.js"></script>
+<script src="views/js/zeroUtil.js?v=<?php echo rand(); ?>"></script>
+<script src="views/js/validarRegistro.js?v=<?php echo rand(); ?>"></script>
+<script src="views/js/validarIngreso.js?v=<?php echo rand(); ?>"></script>
+<script src="views/js/validarCambio.js?v=<?php echo rand(); ?>"></script>
 
 </body>
 
