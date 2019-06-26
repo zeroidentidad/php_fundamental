@@ -54,7 +54,7 @@ class MvcController{
 				$respuesta = $obj->registroUsuarioModel($datosController, "usuarios");
 
 				if($respuesta == "success"){
-					header("location:index.php?action=ok");
+					header("location:ok");
 				}
 				else{
 					header("location:index.php");
@@ -98,7 +98,7 @@ class MvcController{
 						$datos = array("usuarioActual"=>$usuario, "actualizarIntentos"=>$intentos);
 
 						$respuestaActualizarIntentos = $obj->intentosUsuarioModel($datos, "usuarios");						
-						header("location:index.php?action=usuarios");
+						header("location:usuarios");
 					}
 					else{
 						++$intentos;
@@ -107,7 +107,7 @@ class MvcController{
 
 						$respuestaActualizarIntentos = $obj->intentosUsuarioModel($datos, "usuarios");
 
-						header("location:index.php?action=fallo");
+						header("location:fallo");
 					}
 				}
 				else{
@@ -118,7 +118,7 @@ class MvcController{
 
 					$respuestaActualizarIntentos = $obj->intentosUsuarioModel($datos, "usuarios");
 
-					header("location:index.php?action=fallo4intentos");
+					header("location:fallo4intentos");
 				}
 
 			}
@@ -140,8 +140,8 @@ class MvcController{
 				<td>'.$item["usuario"].'</td>
 				<td>'.$item["password"].'</td>
 				<td>'.$item["email"].'</td>
-				<td><a href="index.php?action=editar&id='.$item["id"].'"><button>Editar</button></a></td>
-				<td><a href="index.php?action=usuarios&idBorrar='.$item["id"].'"><button>Borrar</button></a></td>
+				<td><a href="editar&id='.$item["id"].'"><button>Editar</button></a></td>
+				<td><a href="usuarios&idBorrar='.$item["id"].'"><button>Borrar</button></a></td>
 			</tr>';
 		}
 
@@ -192,7 +192,7 @@ class MvcController{
 				$respuesta = $obj->actualizarUsuarioModel($datosController, "usuarios");
 
 				if($respuesta == "success"){
-					header("location:index.php?action=cambio");
+					header("location:cambio");
 				}
 				else{
 					echo "error";
@@ -216,7 +216,7 @@ class MvcController{
 
 			if($respuesta == "success"){
 
-				header("location:index.php?action=usuarios");
+				header("location:usuarios");
 			
 			}
 
@@ -225,5 +225,3 @@ class MvcController{
 	}
 
 }
-
-?>
