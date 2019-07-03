@@ -3,9 +3,9 @@ VALIDAR INGRESO
 =============================================*/
 function validarIngreso() {
 
-    var usuario = $gEBI("#usuarioIngreso").value;
+    var usuario = $gEBI("usuarioIngreso").value;
 
-    var password = $gEBI("#passwordIngreso").value;
+    var password = $gEBI("passwordIngreso").value;
 
     /* VALIDAR USUARIO */
 
@@ -13,6 +13,8 @@ function validarIngreso() {
 
         var caracteres = usuario.length;
         var expresion = /^[a-zA-Z0-9]*$/;
+
+        //alert(usuario);
 
         if (caracteres > 6) {
 

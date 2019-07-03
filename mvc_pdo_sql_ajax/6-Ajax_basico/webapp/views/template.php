@@ -3,7 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Plantilla</title>
-	<link rel="stylesheet" type="text/css" href="views/css/estilos.css?v=<?php echo rand(); ?>"> 
+	<link rel="stylesheet" type="text/css" href="views/css/estilos.css?v=<?php echo rand(); ?>">
+	<script type="application/javascript" src="views/js/jquery-3.0.0.min.js"></script>
 </head>
 
 <body>
@@ -19,10 +20,10 @@ $mvc->enlacesPaginasController();
  ?>
 </section>
 	
-<script src="views/js/zeroUtil.js?v=<?php echo rand(); ?>"></script>
-<script src="views/js/validarRegistro.js?v=<?php echo rand(); ?>"></script>
-<script src="views/js/validarIngreso.js?v=<?php echo rand(); ?>"></script>
-<script src="views/js/validarCambio.js?v=<?php echo rand(); ?>"></script>
+<script type="application/javascript" src="views/js/zeroUtil.js?v=<?php echo rand(); ?>"></script>
+<script type="application/javascript" src="views/js/validarRegistro.js?v=<?php echo rand(); ?>"></script>
+<script type="application/javascript" src="views/js/validarIngreso.js?v=<?php echo rand(); ?>"></script>
+<script type="application/javascript" src="views/js/validarCambio.js?v=<?php echo rand(); ?>"></script>
 
 </body>
 

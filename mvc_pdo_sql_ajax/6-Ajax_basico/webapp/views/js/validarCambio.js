@@ -3,11 +3,11 @@ VALIDAR EDITAR
 =============================================*/
 function validarCambio() {
 
-    var usuario = $gEBI("#usuarioEditar").value;
+    var usuario = $gEBI("usuarioEditar").value;
 
-    var password = $gEBI("#passwordEditar").value;
+    var password = $gEBI("passwordEditar").value;
 
-    var email = $gEBI("#emailEditar").value;
+    var email = $gEBI("emailEditar").value;
 
     /* VALIDAR USUARIO */
 

@@ -224,4 +224,38 @@ class MvcController{
 
 	}
 
+	#VALIDAR USUARIO EXISTENTE
+	#-------------------------------------
+	public function validarUsuarioController($validarUsuario){
+
+		$datosController = $validarUsuario;
+		$obj = new Datos();
+		$respuesta = $obj->validarUsuarioModel($datosController, "usuarios");
+
+		if(count($respuesta["usuario"]) > 0){
+			echo 0;
+		}
+		else{
+			echo 1;
+		}
+
+	}
+
+	#VALIDAR EMAIL EXISTENTE
+	#-------------------------------------
+	public function validarEmailController($validarEmail){
+
+		$datosController = $validarEmail;
+		$obj = new Datos();
+		$respuesta = $obj->validarEmailModel($datosController, "usuarios");
+
+		if(count($respuesta["email"]) > 0){
+			echo 0;
+		}
+		else{
+			echo 1;
+		}
+
+	}	
+
 }

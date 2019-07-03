@@ -1,21 +1,87 @@
 /*=============================================
 VALIDAR USUARIO EXISTENTE AJAX
 =============================================*/
+var usuarioExistente = false;
+var emailExistente = false;
 
-/*=====  FIN VALIDAR REGISTRO  ======*/
+$("#usuarioRegistro").change(function () {
+
+    var usuario = $("#usuarioRegistro").val();
+
+    var datos = new FormData();
+    datos.append("validarUsuario", usuario);
+
+    $.ajax({
+        url: "views/modules/ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (respuesta) {
+            if (respuesta == 0) {
+                $("label[for='usuarioRegistro'] span").html('<p>Este usuario ya existe en la base de datos</p>');
+                usuarioExistente = true;
+            }
+            else {
+                $("label[for='usuarioRegistro'] span").html("");
+                usuarioExistente = false;
+            }
+        }
+
+    });
+
+});
+
+/*=====  FIN VALIDAR USUARIO EXISTENTE AJAX  ======*/
+
+/*=============================================
+VALIDAR EMAIL EXISTENTE AJAX
+=============================================*/
+
+$("#emailRegistro").change(function () {
+
+    var email = $("#emailRegistro").val();
+
+    var datos = new FormData();
+    datos.append("validarEmail", email);
+
+    $.ajax({
+        url: "views/modules/ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (respuesta) {
+            if (respuesta == 0) {
+                $("label[for='emailRegistro'] span").html('<p>Este email ya existe en la base de datos</p>');
+                emailExistente = true;
+            }
+            else {
+                $("label[for='emailRegistro'] span").html("");
+                emailExistente = false;
+            }
+        }
+
+    });
+
+});
+
+/*=====  FIN VALIDAR USUARIO EXISTENTE AJAX  ======*/
 
 /*=============================================
 VALIDAR REGISTRO
 =============================================*/
 function validarRegistro() {
 
-    var usuario = $gEBI("#usuarioRegistro").value;
+    var usuario = $gEBI("usuarioRegistro").value;
 
-    var password = $gEBI("#passwordRegistro").value;
+    var password = $gEBI("passwordRegistro").value;
 
-    var email = $gEBI("#emailRegistro").value;
+    var email = $gEBI("emailRegistro").value;
 
-    var terminos = $gEBI("#terminos").checked;
+    var terminos = $gEBI("terminos").checked;
 
     /* VALIDAR USUARIO */
 
@@ -86,9 +152,9 @@ function validarRegistro() {
     if (!terminos) {
 
         $qS("form").innerHTML += "<br>No se hizo registro, debe aceptar términos y condiciones!.";
-        $gEBI("#usuarioRegistro").value = usuario;
-        $gEBI("#passwordRegistro").value = password;
-        $gEBI("#emailRegistro").value = email;
+        $gEBI("usuarioRegistro").value = usuario;
+        $gEBI("passwordRegistro").value = password;
+        $gEBI("emailRegistro").value = email;
 
         return false;
     }
