@@ -105,6 +105,14 @@ function validarRegistro() {
 
         }
 
+        if (usuarioExistente) {
+
+            document.querySelector("label[for='usuarioRegistro'] span").innerHTML = "<p>Este usuario ya existe en la base de datos</p>";
+
+            return false;
+        }        
+
+
     }
 
     /* VALIDAR PASSWORD */
@@ -144,6 +152,13 @@ function validarRegistro() {
             return false;
 
         }
+
+        if (emailExistente) {
+
+            document.querySelector("label[for='emailRegistro'] span").innerHTML = "<p>Este email ya existe en la base de datos</p>";
+
+            return false;
+        }        
 
     }
 
