@@ -17,6 +17,8 @@ abstract class BD {
             $dbcon = DB.":host=".self::$db_host.";dbname=".self::$db_nombre;
             $pdo = new PDO($dbcon, self::$db_usuario, self::$db_pass);
             $pdo -> exec("SET CHARACTER SET ".self::$db_charset);
+            $pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo -> setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             return $pdo;
         }catch(PDOException $e){
             exit('Error:'.$e->getMessage());

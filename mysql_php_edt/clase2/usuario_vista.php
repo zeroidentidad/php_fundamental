@@ -22,7 +22,22 @@ $usuario = new Usuario_modelo();
          "email"=>"test@mail.com"
      ];
 
-     $usuario->insertar($datos);
+     //$usuario->insertar($datos);
+    ?>
+    <h3>R: Consultar</h3>
+    <?php
+      $consulta = $usuario->consultar();
+      //var_dump($consulta);
+      foreach ($consulta as $valor) {
+          echo '<table border="1">
+                <tr>
+                <th>Nombre</th><th>A. Pat.</th><th>A. Mat.</th><th>Email</th>
+                </tr> 
+                <tr>
+                <td>'.$valor["nombre"].'</td><td>'.$valor["paterno"].'</td><td>'.$valor["materno"].'</td><td>'.$valor["email"].'</td>
+                </tr>
+                </table>';
+      }
     ?>
 </body>
 </html>

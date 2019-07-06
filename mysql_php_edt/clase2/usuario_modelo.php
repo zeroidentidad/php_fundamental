@@ -29,10 +29,13 @@ class Usuario_modelo extends BD {
         }        
     }
 
-    public function consultar($registro){
+    public function consultar(){
         $conexion = parent::conectar();
         try {
-            //code...
+            $sql = "SELECT * FROM usuarios";
+            $consultar = $conexion->prepare($sql);
+            $consultar->execute();
+            return $consultar->fetchAll();            
         }catch(PDOException $e){
             exit('Error:'.$e->getMessage());
         }
