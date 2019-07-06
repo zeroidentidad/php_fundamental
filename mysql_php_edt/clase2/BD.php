@@ -14,9 +14,10 @@ abstract class BD {
 
     public function conectar(){
         try {
-            $dbcon = "{$DB}:host=".self::$db_host.";dbname=".self::$db_nombre;
+            $dbcon = DB.":host=".self::$db_host.";dbname=".self::$db_nombre;
             $pdo = new PDO($dbcon, self::$db_usuario, self::$db_pass);
             $pdo -> exec("SET CHARACTER SET ".self::$db_charset);
+            return $pdo;
         }catch(PDOException $e){
             exit('Error:'.$e->getMessage());
         }
@@ -25,24 +26,4 @@ abstract class BD {
     private function desconectar(){
         $this->conexion=null;
     }
-
-    #CRUD
-
-    abstract protected function insertar($registro){
-
-    }
-
-    abstract protected function consultar(){
-
-    }
-
-    abstract protected function actualizar($registro){
-
-    }
-
-    abstract protected function eliminar($registro){
-
-    }
-
-
 }
