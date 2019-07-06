@@ -41,4 +41,27 @@ class Usuario_modelo extends BD {
         }
     }
 
+    public function actualizar($registro){
+        $conexion = parent::conectar();
+        try {
+        $sql = "UPDATE usuarios SET nombre=:nombre, paterno=:paterno, materno=:materno, email=:email
+                WHERE id=:id";
+
+        $insertar = $conexion->prepare($sql);
+
+		$insertar->bindParam(":nombre", $registro["nombre"], PDO::PARAM_STR);
+		$insertar->bindParam(":paterno", $registro["paterno"], PDO::PARAM_STR);
+		$insertar->bindParam(":materno", $registro["materno"], PDO::PARAM_STR);
+		$insertar->bindParam(":email", $registro["email"], PDO::PARAM_STR);
+		$insertar->bindParam(":id", $registro["id"], PDO::PARAM_INT);
+
+		if($insertar->execute()){
+			echo 'Actualizacion correcta';
+		}       
+
+        }catch(PDOException $e){
+            exit('Error:'.$e->getMessage());
+        }        
+    }    
+
 }

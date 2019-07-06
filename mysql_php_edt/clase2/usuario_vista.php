@@ -16,28 +16,40 @@ $usuario = new Usuario_modelo();
     <h3>C: Insertar</h3>
     <?php
      $datos = [
-         "nombre"=>"Jesus",
+         "nombre"=>"Antonio",
          "paterno"=>"Ferrer",
          "materno"=>"Sanchez",
-         "email"=>"test@mail.com"
+         "email"=>"test2@mail.com"
      ];
 
      //$usuario->insertar($datos);
     ?>
     <h3>R: Consultar</h3>
+    <table border="1">
+    <tr>
+    <th>Nombre</th><th>A. Pat.</th><th>A. Mat.</th><th>Email</th>
+    </tr> 
     <?php
       $consulta = $usuario->consultar();
       //var_dump($consulta);
       foreach ($consulta as $valor) {
-          echo '<table border="1">
-                <tr>
-                <th>Nombre</th><th>A. Pat.</th><th>A. Mat.</th><th>Email</th>
-                </tr> 
-                <tr>
+          echo '<tr>
                 <td>'.$valor["nombre"].'</td><td>'.$valor["paterno"].'</td><td>'.$valor["materno"].'</td><td>'.$valor["email"].'</td>
-                </tr>
-                </table>';
+                </tr>';
       }
     ?>
+    </table>
+    <h3>U: Actualizar</h3>
+    <?php
+     $datos = [
+         "nombre"=>"Jesús",
+         "paterno"=>"Ferrer",
+         "materno"=>"Sanchez",
+         "email"=>"correochido@mail.com",
+         "id"=>1
+     ];
+
+     $usuario->actualizar($datos);
+    ?>    
 </body>
 </html>

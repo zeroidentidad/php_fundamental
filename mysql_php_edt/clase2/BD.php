@@ -28,4 +28,13 @@ abstract class BD {
     private function desconectar(){
         $this->conexion=null;
     }
+
+    #CRUD
+    abstract protected function insertar($registro);
+
+    abstract protected function consultar();
+
+    abstract protected function actualizar($registro);
+    
+    //abstract protected function eliminar($registro);
 }
