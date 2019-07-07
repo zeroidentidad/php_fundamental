@@ -36,5 +36,5 @@ abstract class BD {
 
     abstract protected function actualizar($registro);
     
-    //abstract protected function eliminar($registro);
+    abstract protected function eliminar($accion, $registro);
 }

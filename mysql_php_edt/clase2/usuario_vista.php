@@ -49,7 +49,12 @@ $usuario = new Usuario_modelo();
          "id"=>1
      ];
 
-     $usuario->actualizar($datos);
-    ?>    
+     //$usuario->actualizar($datos);
+    ?>
+    <h3>D: Eliminar</h3>
+    <?php
+     $id = 8;
+     $usuario->eliminar('', $id);   
+    ?>
 </body>
 </html>

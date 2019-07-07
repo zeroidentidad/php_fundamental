@@ -62,6 +62,28 @@ class Usuario_modelo extends BD {
         }catch(PDOException $e){
             exit('Error:'.$e->getMessage());
         }        
-    }    
+    }
+
+    function eliminar($accion, $registro){
+        $conexion = parent::conectar();
+        if ($accion=='todos'){
+            try {
+                $sql = "DELETE FROM usuarios";
+                $eliminar = $conexion->prepare($sql);
+                $eliminar->execute();
+            } catch(PDOException $e){
+            exit('Error:'.$e->getMessage());
+            }
+        }else {
+            try {
+                $sql = "DELETE FROM usuarios WHERE id=:id";
+                $eliminar = $conexion->prepare($sql);
+                $eliminar->bindParam(":id", $registro, PDO::PARAM_INT);
+                $eliminar->execute();
+            } catch(PDOException $e){
+            exit('Error:'.$e->getMessage());
+            }
+        }
+    }
 
 }
