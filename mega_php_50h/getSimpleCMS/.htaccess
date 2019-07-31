@@ -53,7 +53,7 @@ DirectoryIndex index.php
 
 	# Usually RewriteBase is just '/', but 
 	# replace it with your subdirectory path
-	RewriteBase **REPLACE**
+	RewriteBase /php_fundamental/mega_php_50h/getSimpleCMS/
 
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
