@@ -7,13 +7,11 @@ require_once './header.php';
 	<p class="p-center f16"><b><u>Miembros activos:</u></b></p>
 	<iframe src="https://discordapp.com/widget?id=531918618670268420&theme=dark" class="full-height" width="100%" allowtransparency="true" frameborder="0">
 	</iframe>
-</div>
-<div class="row text-center">
-	<div class="col col-sm-12 col-md-12 col-lg-12">
+	<div class="row text-center">
 		<button class="btn btn-primary" type="button" onclick="javascript:location.href='https://discord.gg/nrrYxtp';">
 		<b>Invitación acceso total</b>
-		</button>
-	</div>		
+		</button>		
+	</div>
 </div>
 <?php
 require_once './footer.php';
