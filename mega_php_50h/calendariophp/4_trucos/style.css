@@ -1,0 +1,36 @@
+
+	*{
+		margin:0;
+		bottom:0;
+	}
+	body{
+		font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	}
+	#calendario{
+		font-size:1em;
+	}
+	#calendario caption{
+		text-align:left;
+		padding:5px 10px;
+		background:rgb(19, 134, 163);
+		color:#fff;
+	}
+	#calendario th{
+		background-color: rgba(221,238,190,1.00);
+		color:rgb(18, 87, 133);
+		width:40px;
+		font-weight:lighter;
+	}
+	#calendario td{
+		text-align:right;
+		padding:2px 5px;
+		background-color:silver;
+	}
+	#calendario .hoy{
+		background-color:rgba(241,180,110,1.00);
+	}
+	#fecha{
+		font-size: 14px;
+		font-weight: bold;
+		text-align: center;
+	}
