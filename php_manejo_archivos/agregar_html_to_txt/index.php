@@ -7,24 +7,26 @@ if( $_POST )
   $name = isset( $_POST['name'] ) ? $_POST['name'] : '';
   $last_name = isset( $_POST['last_name'] ) ? $_POST['last_name'] : '';
 
-  $string_output = $title . ',' . $name . ',' . $last_name;
-  file_put_contents('./data.txt', $string_output); // sobreescribir archivo
+  $verif_vacio = file_get_contents('./data.txt');
+  $new_line = ""; if($verif_vacio!=''){ $new_line = "\n"; }
+  $string_output = $new_line. $title . ',' . $name . ',' . $last_name;
+  file_put_contents('./data.txt', $string_output, FILE_APPEND | LOCK_EX); //agregar contenido vars post, LOCK_EX: bloqueo en uso externo del archivo
 
 }
 
-$file_contents = file_get_contents('./data.txt'); // ->
+$file_contents = file_get_contents('./data.txt');
 
 ?>
 <!DOCTYPE html>
 <html data-whatinput="keyboard" data-whatintent="keyboard" class=" whatinput-types-initial whatinput-types-keyboard"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
-<title>Escribiendo archivo</title>
+<title>Agregando TXT</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
 <link rel="stylesheet" href="../assets/css/foundation.css">
 <link rel="stylesheet" href="../assets/css/app.css">
 <meta class="foundation-mq"></head>
-  <body>
-
+<body>
     <!-- Top Bar -->
     <div class="top-bar">
       <div class="row">
@@ -35,12 +37,11 @@ $file_contents = file_get_contents('./data.txt'); // ->
         </div>
       </div>
     </div>
-
     <br>
   
     <div class="row">
       <div class="medium-12 large-12 columns">
-        <h4>Escribiendo archivo</h4>
+        <h4>Agregando contenido</h4>
         <form method="POST">
           <div class="medium-4  columns">
             <label>Titulo</label>
@@ -75,23 +76,22 @@ $file_contents = file_get_contents('./data.txt'); // ->
                 <th>Nombre</th>
                 <th>Apellido</th>
               </tr>
-
-            <?php
-            $arr_lines = explode("\n",$file_contents); //<-
-
-            if ($arr_lines[0]!=''){ // verificar archivo no vacio para leer contenido
-              foreach( $arr_lines as $line )
-              {
-                $arr_colums = explode(',', $line);
-              ?>
-              <tr>
-                <td><?php echo $arr_colums[0]; ?></td>
-                <td><?php echo $arr_colums[1]; ?></td>
-                <td><?php echo $arr_colums[2]; ?></td>
-              </tr>
               <?php
+              $arr_lines = explode("\n",$file_contents);
+              
+              if ($arr_lines[0]!=''){ // verificar archivo no vacio para leer contenido
+
+                foreach ($arr_lines as $line) {
+                  $arr_colums = explode(',', $line);
+              ?>
+                <tr>
+                  <td><?php echo $arr_colums[0]; ?></td>
+                  <td><?php echo $arr_colums[1]; ?></td>
+                  <td><?php echo $arr_colums[2]; ?></td>
+                </tr>
+              <?php
+                }
               }
-            }
               ?>
               
             </table>
@@ -107,7 +107,7 @@ $file_contents = file_get_contents('./data.txt'); // ->
 
         <script src="../assets/js/vendor/jquery.js"></script>
         <script src="../assets/js/vendor/what-input.js"></script>
-        <script src="../assets/js/vendor/foundation.js"></script>
+        <script src="../assets/js/vendor/foundation.min.js"></script>
         <script src="../assets/js/app.js"></script>
     </body>
 </html>
