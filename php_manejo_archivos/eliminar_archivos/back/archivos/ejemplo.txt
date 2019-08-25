@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<breakfast_menu>
+  <food>
+    <name>Tamales</name>
+    <price>$10</price>
+    <description>Dos de nuestros famosos Tamales mexicanos con salsa picante.</description>
+    <calories>900</calories>
+  </food>
+</breakfast_menu>
