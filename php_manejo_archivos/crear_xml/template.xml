@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"> 
+    <Placemark>
+    <name>Grabando info</name>
+    <description>Esta es una descripción de marcador.</description>
+    <Point>
+        <coordinates>15.415698, 47.0704445,0</coordinates>
+    </Point>
+    </Placemark> 
+ </kml>
