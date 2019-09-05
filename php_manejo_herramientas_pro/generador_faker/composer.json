@@ -1,0 +1,12 @@
+{
+    "name": "chucho/generador_faker",
+    "authors": [
+        {
+            "name": "Jesus Ferrer"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "fzaninotto/faker": "dev-master"
+    }
+}
