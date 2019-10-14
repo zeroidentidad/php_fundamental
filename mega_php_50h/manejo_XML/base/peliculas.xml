@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<peliculas>
+	<pelicula>
+		<titulo>Lo que el Viento se Llevó</titulo>
+		<personajes>
+			<personaje>
+				<nombre>El Malo de la Pelicula</nombre>
+				<actor>Actor Fernandez</actor>
+			</personaje>
+			<personaje>
+				<nombre>La Chica</nombre>
+				<actor>Actriz Maria</actor>
+			</personaje>
+		</personajes>
+		<argumento>
+		Un señor muy rico, El Malo de la Película, despues de la Guerra de Secesion Americana,bla bla bla.
+		</argumento>
+		<grandes-frases>
+			<frase>A Dios pongo por testigo, de que no volveré a pasar hambre</frase>
+		</grandes-frases>
+		<puntuacion tipo="votos">7</puntuacion>
+		<puntuacion tipo="estrellas">5</puntuacion>
+	</pelicula>
+</peliculas>
