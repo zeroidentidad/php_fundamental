@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
+	<url>
+		<titulo>PHP Intermedio</titulo>
+		<loc>http://miblog.com/php-intermedio</loc>
+		<autor>Ana</autor>
+		<lastmode>2019-05-14</lastmode>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<titulo>Js para todos</titulo>
+		<loc>http://miblog.com/js-para-todos</loc>
+		<autor>Jesus</autor>
+		<lastmode>2019-09-14</lastmode>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<titulo>HTML y CSS: la base de una web</titulo>
+		<loc>http://miblog.com/html-y-css</loc>
+		<autor>Vero</autor>
+		<lastmode>2019-09-21</lastmode>
+		<changefreq>monthly</changefreq>
+		<priority>0.8</priority>
+	</url>
+</urlset>
