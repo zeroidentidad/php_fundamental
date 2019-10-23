@@ -1,0 +1,45 @@
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+h1{
+	text-align:center;
+	font-weight:normal;
+	color:rgba(63,63,63,1.00);
+	font-size:1.3em;
+	margin-top:50px;
+}
+section{
+	width:400px;
+	padding:1em;
+	box-sizing:border-box;
+	background:rgba(199,199,199,1.00);
+	border:rgba(63,63,63,1.00) 2px solid;
+	margin:20px auto;
+}
+article{
+	background:#fff;
+	padding:0.5em;
+	border-bottom:1px solid rgba(199,199,199,1.00);
+	box-sizing:border-box;
+}
+input, label{
+	width:100%;
+	font-size:1em;
+	color: rgba(63,63,63,1.00);
+	padding:0.3em 0.5em;
+	box-sizing:border-box;
+	border:none;
+	margin:0 0 15px 0;
+}
+input{
+	background:#fff;
+}
+input[type=submit]{
+	width:50%;
+	background:rgba(63,63,63,1.00);
+	color:#fff;
+}
