@@ -1,0 +1,15 @@
+
+link:
+https://hub.docker.com/r/bitnami/laravel
+
+comando:
+docker pull bitnami/laravel
+
+instalar docker-compose:
+https://docs.docker.com/compose/install/
+
+cd ~/myapp
+descarga script compose:
+curl -LO https://raw.githubusercontent.com/bitnami/bitnami-docker-laravel/master/docker-compose.yml
+
+docker-compose up
