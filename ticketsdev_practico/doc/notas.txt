@@ -1,0 +1,19 @@
+- Entidades -
+
+1- Actividades (CAT):
+id_actividad [PK]
+bloque
+disciplina
+horario
+cupo
+
+2- Participantes:
+email [PK] - [UQ]
+nombre
+apellido
+
+3- Registro:
+id_registro [PK]
+email [FK]
+id_actividad [FK]
+fecha

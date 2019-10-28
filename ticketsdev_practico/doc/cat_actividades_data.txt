@@ -1,0 +1,22 @@
+('1A','Bloque 1','ANALISIS','9:00 a 12:00',10)
+('1B','Bloque 1','BACKEND','9:00 a 12:00',10)
+('1F','Bloque 1','FRONTEND','9:00 a 12:00',10)
+('1D','Bloque 1','DEMO','9:00 a 12:00',10)
+('2A','Bloque 2','ANALISIS','14:00 a 17:00',10)
+('2B','Bloque 2','BACKEND','14:00 a 17:00',10)
+('2F','Bloque 2','FRONTEND','14:00 a 17:00',10)
+('2D','Bloque 2','DEMO','14:00 a 17:00',10)
+('3A','Bloque 3','ANALISIS','18:00 a 21:00',10)
+('3B','Bloque 3','BACKEND','18:00 a 21:00',10)
+('3F','Bloque 3','FRONTEND','18:00 a 21:00',10)
+('3D','Bloque 3','DEMO','18:00 a 21:00',10)
+
+operaciones:
+
+- Registrar participantes:
+--Validar cupo
+--Insertar datos en participantes y registro
+
+- Listar registro
+
+- Eliminar de participante y registro
