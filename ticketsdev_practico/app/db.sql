@@ -39,3 +39,42 @@ CREATE TABLE registro(
     FOREIGN KEY (email) REFERENCES participantes (email) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (id_actividad) REFERENCES actividades (id_actividad) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP PROCEDURE IF EXISTS registar_participante;
+
+DELIMITER $$
+
+CREATE PROCEDURE registar_participante(
+    IN _email VARCHAR(50),
+    IN _nombre VARCHAR(50),
+    IN _apellido VARCHAR(50),
+    IN _actividad CHAR(2)
+
+)
+BEGIN
+
+DECLARE limite INT DEFAULT 0;
+DECLARE registrados INT DEFAULT 0;
+DECLARE actividad_llena VARCHAR(255) DEFAULT 'El bloque y actividad elegidos ya no tienen lugares libres.';
+
+START TRANSACTION;
+    SELECT cupo INTO limite from actividades
+    WHERE id_actividad = _actividad;
+
+    SELECT COUNT(*) INTO registrados from registro
+    WHERE id_actividad = _actividad;
+
+    IF registrados < limite THEN
+        INSERT INTO participantes (email, nombre, apellido) values(_email, _nombre, _apellido);
+
+        INSERT INTO registro (email, id_actividad, fecha) values(_email, _actividad, NOW());
+    ELSE
+        SELECT actividad_llena;
+    END IF;
+
+COMMIT;
+
+END
+$$
+
+DELIMITER ;
