@@ -78,3 +78,7 @@ END
 $$
 
 DELIMITER ;
+
+-- tests:
+
+call registrar_participante('test@mail.com', 'Jesus', 'Ferrer', '1B');
