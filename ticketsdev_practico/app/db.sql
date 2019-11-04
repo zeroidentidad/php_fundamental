@@ -49,7 +49,6 @@ CREATE PROCEDURE registrar_participante(
     IN _nombre VARCHAR(50),
     IN _apellido VARCHAR(50),
     IN _actividad CHAR(2)
-
 )
 BEGIN
 
@@ -82,3 +81,33 @@ DELIMITER ;
 -- tests:
 
 call registrar_participante('test@mail.com', 'Jesus', 'Ferrer', '1B');
+call registrar_participante('test2@mail.com', 'Jesus2', 'Ferrer', '1B');
+
+----------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS eliminar_participante;
+
+DELIMITER $$
+
+CREATE PROCEDURE eliminar_participante(
+    IN _email VARCHAR(50)
+)
+BEGIN
+
+START TRANSACTION;
+    DELETE FROM participantes
+    WHERE email = _email;
+
+    DELETE FROM registro
+    WHERE email = _email;    
+
+COMMIT;
+
+END
+$$
+
+DELIMITER ;
+
+--tests:
+
+call eliminar_participante('test2@mail.com');
