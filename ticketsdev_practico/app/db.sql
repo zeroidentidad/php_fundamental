@@ -40,11 +40,11 @@ CREATE TABLE registro(
     FOREIGN KEY (id_actividad) REFERENCES actividades (id_actividad) ON DELETE CASCADE ON UPDATE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP PROCEDURE IF EXISTS registar_participante;
+DROP PROCEDURE IF EXISTS registrar_participante;
 
 DELIMITER $$
 
-CREATE PROCEDURE registar_participante(
+CREATE PROCEDURE registrar_participante(
     IN _email VARCHAR(50),
     IN _nombre VARCHAR(50),
     IN _apellido VARCHAR(50),
