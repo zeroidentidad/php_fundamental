@@ -55,21 +55,35 @@ BEGIN
 DECLARE limite INT DEFAULT 0;
 DECLARE registrados INT DEFAULT 0;
 DECLARE actividad_llena VARCHAR(255) DEFAULT 'El bloque y actividad elegidos ya no tienen lugares libres.';
+DECLARE existe_registro INT DEFAULT 0;
+DECLARE respuesta VARCHAR(255) DEFAULT 'ok';
 
 START TRANSACTION;
-    SELECT cupo INTO limite from actividades
-    WHERE id_actividad = _actividad;
 
-    SELECT COUNT(*) INTO registrados from registro
-    WHERE id_actividad = _actividad;
+    SELECT COUNT(*) INTO existe_registro FROM registro
+    WHERE email = _email;
 
-    IF registrados < limite THEN
-        INSERT INTO participantes (email, nombre, apellido) values(_email, _nombre, _apellido);
-
-        INSERT INTO registro (email, id_actividad, fecha) values(_email, _actividad, NOW());
+    IF existe_registro > 0 THEN
+        SELECT 'Este email ya fue registrado previamente.' AS respuesta;
     ELSE
-        SELECT actividad_llena;
-    END IF;
+
+        SELECT cupo INTO limite FROM actividades
+        WHERE id_actividad = _actividad;
+
+        SELECT COUNT(*) INTO registrados FROM registro
+        WHERE id_actividad = _actividad;
+
+        IF registrados < limite THEN
+            INSERT INTO participantes (email, nombre, apellido) values(_email, _nombre, _apellido);
+
+            INSERT INTO registro (email, id_actividad, fecha) values(_email, _actividad, NOW());
+
+            SELECT respuesta;
+        ELSE
+            SELECT 'El bloque y actividad elegidos ya no tienen lugares libres.' AS respuesta;
+        END IF;
+
+    END IF;    
 
 COMMIT;
 
@@ -94,12 +108,17 @@ CREATE PROCEDURE eliminar_participante(
 )
 BEGIN
 
+DECLARE respuesta VARCHAR(255) DEFAULT 'ok';
+
+
 START TRANSACTION;
     DELETE FROM participantes
     WHERE email = _email;
 
     DELETE FROM registro
-    WHERE email = _email;    
+    WHERE email = _email;
+
+    SELECT respuesta;   
 
 COMMIT;
 
