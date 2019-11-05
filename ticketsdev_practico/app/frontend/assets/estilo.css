@@ -1,0 +1,19 @@
+.u-m1p1{
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.messages{
+    font-size: 1.5rem;
+}
+
+/* grid css */
+/*.encabezado {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(3, auto);
+grid-template-areas: 
+'palabra .      .'
+'.       .      .'
+'frase   frase   logo';
+}*/

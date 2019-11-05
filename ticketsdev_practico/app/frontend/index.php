@@ -37,18 +37,21 @@
                   <input id="email" name="email" type="email" class="validate" required>
                   <label for="email">E-mail</label>
               </div>
-              <div class="input-field col s12">
-                  <select>
-                      <option value="" disabled selected>Choose your option</option>
-                      <option value="1">Option 1</option>
-                      <option value="2">Option 2</option>
-                      <option value="3">Option 3</option>
+              <div class="input-field">
+                  <select id="actividad" name="actividad" required>
+                      <option value="" disabled selected>Seleccionar disciplina</option>
+                      <option value="ANALISIS">ANALISIS</option>
+                      <option value="BACKEND">BACKEND</option>
+                      <option value="FRONTEND">FRONTEND</option>
+                      <option value="DEMO">DEMO</option>
                   </select>
                   <label>Actividades</label>
               </div>
+              <div id="horario"></div>
               <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
                   <i class="material-icons right">send</i>
               </button>
+              <div id="response"></div>
           </form>
       </main>
 

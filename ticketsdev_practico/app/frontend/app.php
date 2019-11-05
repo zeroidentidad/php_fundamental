@@ -26,13 +26,28 @@ function obtener_horarios($disciplina){
     if (count($result)===0) {
         echo 'No hay horarios '.$disciplina;
     } else {
-        echo '<pre>';
-        var_dump($result);
-        echo '</pre>';
+        $html='';
+        foreach($result as $fila){
+            $cupo = obtener_cupo($fila['id_actividad']);
+            $lugares_disponibles = $cupo['cupo']-$cupo['registrados'];
+
+            $html .= '
+            <p>
+            <label>
+            <input name="horario" type="radio" value="'.$fila['id_actividad'].'" required>
+            <span>'.$fila['horario'].'</span>
+            -<span>'.$fila['bloque'].'</span>
+            -<span>Hay <b>'.$lugares_disponibles.'</b> lugares disponibles</span>
+            </label>
+            </p>
+            ';
+        }
+        echo $html;
     }
 
     return $result;    
 }
+if (isset($_POST['disciplina'])) { obtener_horarios($_POST['disciplina']); }
 
 function existe_registro($email){
     $sql = "SELECT p.email, p.nombre, p.apellido, a.bloque, a.disciplina, a.horario, r.fecha
@@ -104,10 +119,6 @@ var_dump(obtener_cupo('1B'));
 echo '</pre>';*/
 
 //obtener_horarios('BACKEND');
-
-/*echo '<pre>';
-var_dump(existe_registro('test@mail.com'));
-echo '</pre>';*/
 
 /*echo '<pre>';
 var_dump(crear_registro('test4@mail.com', 'Jesus4', 'Ferrer', '1B'));
