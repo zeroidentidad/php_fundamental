@@ -47,12 +47,44 @@ function existe_registro($email){
     return $result;
 }
 
+function crear_registro($email, $nombre, $apellido, $actividad){
+    $registrado = existe_registro($email);
+
+    if(!$registrado){
+        $cupo = obtener_cupo($actividad);
+
+        if ($cupo['registrados']==$cupo['cupo']) {
+            $res = array('error'=>true, 'msg'=>'Horario y actividad sin cupo, elige otra.');
+        } else {
+            $sql = "CALL registrar_participante(?, ?, ?, ?)";
+            $data = array($email, $nombre, $apellido, $actividad);
+
+            $result = db_query($sql, $data);
+
+            if ($result) {
+                $res = array('error'=>false, 'msg'=>'Listo, tu registro fue creado.');
+            } else {
+                $res = array('error'=>true, 'msg'=>'Ocurrio un error, reintentar.');
+            }
+        }
+    } else {
+        $res = array('error'=>true, 'msg'=>'El email ya fue registrado anteriormente.');
+    }
+
+    header('Content-type: application/json');
+    echo json_encode($res);
+}
+
 /*echo '<pre>';
 var_dump(obtener_cupo('1B'));
 echo '</pre>';*/
 
 //obtener_horarios('BACKEND');
 
-echo '<pre>';
+/*echo '<pre>';
 var_dump(existe_registro('test@mail.com'));
+echo '</pre>';*/
+
+echo '<pre>';
+var_dump(crear_registro('test3@mail.com', 'Jesus3', 'Ferrer', '1B'));
 echo '</pre>';
