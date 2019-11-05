@@ -113,9 +113,9 @@ echo '</pre>';*/
 var_dump(crear_registro('test4@mail.com', 'Jesus4', 'Ferrer', '1B'));
 echo '</pre>';*/
 
-echo '<pre>';
+/*echo '<pre>';
 var_dump(obtener_registros());
-echo '</pre>';
+echo '</pre>';*/
 
 /*echo '<pre>';
 var_dump(eliminar_registro('test4@mail.com'));
