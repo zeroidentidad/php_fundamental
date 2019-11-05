@@ -77,6 +77,28 @@ function crear_registro($email, $nombre, $apellido, $actividad){
     echo json_encode($res);
 }
 
+function obtener_registros(){
+    $sql = "SELECT p.email, p.nombre, p.apellido, a.bloque, a.disciplina, a.horario, r.fecha
+            FROM registro AS r INNER JOIN actividades AS a ON a.id_actividad = r.id_actividad
+            INNER JOIN participantes AS p ON p.email = r.email
+            ORDER BY r.fecha, a.bloque, a.disciplina, a.horario";
+            
+    $result = db_query($sql,null,true);
+
+    if (count($result)===0) {
+        echo 'No hay registros.';
+    } else {
+        return $result;
+    }    
+}
+
+function eliminar_registro($email){
+    $sql = "CALL eliminar_participante(?)";
+    $data = array($email);
+    $result = db_query($sql,$data);
+    return $result;
+}
+
 /*echo '<pre>';
 var_dump(obtener_cupo('1B'));
 echo '</pre>';*/
@@ -89,4 +111,12 @@ echo '</pre>';*/
 
 /*echo '<pre>';
 var_dump(crear_registro('test4@mail.com', 'Jesus4', 'Ferrer', '1B'));
+echo '</pre>';*/
+
+echo '<pre>';
+var_dump(obtener_registros());
+echo '</pre>';
+
+/*echo '<pre>';
+var_dump(eliminar_registro('test4@mail.com'));
 echo '</pre>';*/
