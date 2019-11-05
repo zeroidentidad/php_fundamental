@@ -63,6 +63,8 @@ function crear_registro($email, $nombre, $apellido, $actividad){
 
             if ($result) {
                 $res = array('error'=>false, 'msg'=>'Listo, tu registro fue creado.');
+                $registro = existe_registro($email);
+                enviar_email($registro);
             } else {
                 $res = array('error'=>true, 'msg'=>'Ocurrio un error, reintentar.');
             }
@@ -85,6 +87,6 @@ echo '</pre>';*/
 var_dump(existe_registro('test@mail.com'));
 echo '</pre>';*/
 
-echo '<pre>';
-var_dump(crear_registro('test3@mail.com', 'Jesus3', 'Ferrer', '1B'));
-echo '</pre>';
+/*echo '<pre>';
+var_dump(crear_registro('test4@mail.com', 'Jesus4', 'Ferrer', '1B'));
+echo '</pre>';*/
