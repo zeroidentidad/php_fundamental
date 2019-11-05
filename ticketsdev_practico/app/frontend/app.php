@@ -34,7 +34,7 @@ function obtener_horarios($disciplina){
             $html .= '
             <p>
             <label>
-            <input name="horario" type="radio" value="'.$fila['id_actividad'].'" required>
+            <input name="id_actividad" type="radio" value="'.$fila['id_actividad'].'" required>
             <span>'.$fila['horario'].'</span>
             -<span>'.$fila['bloque'].'</span>
             -<span>Hay <b>'.$lugares_disponibles.'</b> lugares disponibles</span>
@@ -69,7 +69,7 @@ function crear_registro($email, $nombre, $apellido, $actividad){
         $cupo = obtener_cupo($actividad);
 
         if ($cupo['registrados']==$cupo['cupo']) {
-            $res = array('error'=>true, 'msg'=>'Horario y actividad sin cupo, elige otra.');
+            $res = array('err'=>true, 'msg'=>'Horario y actividad sin cupo, elige otra.');
         } else {
             $sql = "CALL registrar_participante(?, ?, ?, ?)";
             $data = array($email, $nombre, $apellido, $actividad);
@@ -77,19 +77,22 @@ function crear_registro($email, $nombre, $apellido, $actividad){
             $result = db_query($sql, $data);
 
             if ($result) {
-                $res = array('error'=>false, 'msg'=>'Listo, tu registro fue creado.');
+                $res = array('err'=>false, 'msg'=>'Listo, tu registro fue creado.');
                 $registro = existe_registro($email);
                 enviar_email($registro);
             } else {
-                $res = array('error'=>true, 'msg'=>'Ocurrio un error, reintentar.');
+                $res = array('err'=>true, 'msg'=>'Ocurrio un error, reintentar.');
             }
         }
     } else {
-        $res = array('error'=>true, 'msg'=>'El email ya fue registrado anteriormente.');
+        $res = array('err'=>true, 'msg'=>'El email ya fue registrado anteriormente.');
     }
 
     header('Content-type: application/json');
     echo json_encode($res);
+}
+if (isset($_POST['email'])) { 
+    crear_registro($_POST['email'], $_POST['nombre'], $_POST['apellido'], $_POST['id_actividad']);
 }
 
 function obtener_registros(){
@@ -103,7 +106,26 @@ function obtener_registros(){
     if (count($result)===0) {
         echo 'No hay registros.';
     } else {
-        return $result;
+        $html='';
+        foreach($result as $fila){
+            $html .= '
+            <tr>
+            <td>'.$fila['email'].'</td>
+            <td>'.$fila['nombre'].'</td>
+            <td>'.$fila['apellido'].'</td>
+            <td>'.$fila['bloque'].'</td>
+            <td>'.$fila['disciplina'].'</td>
+            <td>'.$fila['horario'].'</td>
+            <td>'.$fila['fecha']. '</td>
+            <td>
+            <a href="#" class="btn-floating indigo">
+             <i class="material-icons delete" data-registro="'.$fila['email'].'">delete</i>
+            </a>
+            </td>
+            </tr>
+            ';
+        }
+        return $html;        
     }    
 }
 
@@ -113,6 +135,7 @@ function eliminar_registro($email){
     $result = db_query($sql,$data);
     return $result;
 }
+if (isset($_POST['registro'])) { eliminar_registro($_POST['registro']); }
 
 /*echo '<pre>';
 var_dump(obtener_cupo('1B'));

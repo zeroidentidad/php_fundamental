@@ -12,6 +12,7 @@
   <body>
       <main class="container">
           <header>
+              <a href="./admin.php" class="indigo-text right"><b>Admin</b></a>
               <p class="flow-text indigo-text header-phrase center">Bootcamp rondas Devs ⌨️ 🖥️</p>
           </header>
           <article class="center u-m1p1 white">
