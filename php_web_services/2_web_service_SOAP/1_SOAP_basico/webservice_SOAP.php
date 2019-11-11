@@ -24,8 +24,27 @@ if (!isset($HTTP_RAW_POST_DATA)) {
 }
 
 $server = new soap_server();
-$server->register("mostrarInfo");
-$server->register("mostrarImagen");
+
+$server->configureWSDL("Titulo X", "urn:infoWeb");
+
+$server->register("mostrarInfo",
+array(), //parametro
+array('return'=>'xsd:string'), //respuesta
+'urn:infoWeb', //namespace
+'urn:infoWeb#mostrarInfo', //accion
+'rpc', //estilo
+'encoded', //uso
+'Muestra info x' //descripcion
+);
+$server->register("mostrarImagen",
+array('categoria'=>'xsd:string'), //parametro
+array('return'=>'xsd:string'), //respuesta
+'urn:infoWeb', //namespace
+'urn:infoWeb#mostrarImagen', //accion
+'rpc', //estilo
+'encoded', //uso
+'Muestra imagen X' //descripcion
+);
 
 $server->service($HTTP_RAW_POST_DATA);
 
