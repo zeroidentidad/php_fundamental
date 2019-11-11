@@ -1,0 +1,5 @@
+Frijoles,
+Tortillas,
+Pan,
+Tomates,
+Cebollas
