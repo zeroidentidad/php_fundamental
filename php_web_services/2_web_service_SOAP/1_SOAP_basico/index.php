@@ -7,8 +7,16 @@ $cliente->soap_defencoding = 'UTF-8';
 $cliente->decode_utf8 = FALSE;
 
 $info = $cliente->call("mostrarInfo");
+$imagen = $cliente->call("mostrarImagen", array('categoria'=>'espacio'));
+$imagen2 = $cliente->call("mostrarImagen", array('categoria'=>''));
 
 echo "<h2>La info</h2>";
 echo "<p>".$info."</p>";
+
+echo "<h2>Imagen</h2>";
+echo "<div align='center'>".$imagen."</div>";
+
+echo "<h2>Imagen 2</h2>";
+echo "<div align='center'>".$imagen2."</div>";
 
 ?>
