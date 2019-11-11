@@ -1,0 +1,46 @@
+[
+    {
+        "name": "econea/nusoap",
+        "version": "v0.9.5.4",
+        "version_normalized": "0.9.5.4",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/econea/nusoap.git",
+            "reference": "16d506ccd4bc15089bdae5e1ee96e080cf8df770"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/econea/nusoap/zipball/16d506ccd4bc15089bdae5e1ee96e080cf8df770",
+            "reference": "16d506ccd4bc15089bdae5e1ee96e080cf8df770",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4"
+        },
+        "time": "2017-09-29T11:12:54+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "src/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPLv2"
+        ],
+        "authors": [
+            {
+                "name": "Milan Felix Sulc"
+            },
+            {
+                "name": "Martin Macejkou Mates"
+            }
+        ],
+        "description": "NuSOAP fixed for PHP 5.5 - 7.0",
+        "keywords": [
+            "nusoap",
+            "soap"
+        ]
+    }
+]
