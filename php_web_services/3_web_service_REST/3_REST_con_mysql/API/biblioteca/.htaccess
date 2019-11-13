@@ -1,0 +1,5 @@
+Options +FollowSymLinks -Multiviews
+
+RewriteEngine On
+
+RewriteRule ^([^/]+)/([^/]+) libros.php?peticion=$1&detalle=$2 [L,QSA]
