@@ -1,5 +1,5 @@
 <?php
-$url = "http://localhost:8080/API/estudiantes/alumno.php";
+$url = "http://localhost:8080/php_web_services/3_web_service_REST/1_REST_basica/API/estudiantes/alumno.php";
 $JSON = file_get_contents($url);
 $datos = json_decode($JSON);
 //print_r($JSON);
