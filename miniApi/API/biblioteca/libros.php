@@ -19,7 +19,6 @@ function mostrar_titulos($detalle, $con)
     while ($fila = mysqli_fetch_assoc($resultado)) {
         $todos_los_titulos[] = $fila;
     }
-    //print_r($todos_los_titulos);
     return $todos_los_titulos;
 }
 
@@ -35,8 +34,22 @@ function mostrar_autores($detalle, $con)
     while ($fila = mysqli_fetch_assoc($resultado)) {
         $todos_los_autores[] = $fila;
     }
-    //print_r($todos_los_autores);
     return $todos_los_autores;
+}
+
+function mostrar_libros($detalle, $con)
+{
+    if ($detalle == 'lista') {
+        $sql = 'SELECT * FROM libros';
+        $resultado = mysqli_query($con, $sql) or die(mysqli_error($con));
+    } else {
+        $sql_n = 'SELECT * FROM libros where id='.$detalle;
+        $resultado = mysqli_query($con, $sql_n) or die(mysqli_error($con));
+    }
+    while ($fila = mysqli_fetch_assoc($resultado)) {
+        $todos_los_titulos[] = $fila;
+    }
+    return $todos_los_titulos;
 }
 
 function guardar_nuevo_autor($con)
@@ -56,7 +69,10 @@ if ($_GET['peticion'] == 'titulo') {
         $resultado = mostrar_autores($_GET['detalle'], $con);
     }
 
-} else {
+} elseif ($_GET['peticion'] == 'libros') {
+    $resultado = mostrar_libros($_GET['detalle'], $con);
+}
+else {
     header('HTTP/1.1 405 Method Not Allowed');
     exit;
 }
