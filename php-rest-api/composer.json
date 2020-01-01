@@ -1,5 +1,5 @@
 {
     "require": {
-        "lichtner/fluentpdo": "^2.1"
-    }
+        "lichtner/fluentpdo": "1.1.*"
+    }    
 }
