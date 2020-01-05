@@ -17,3 +17,8 @@ $container['logger'] = function ($c) {
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], Monolog\Logger::DEBUG));
     return $logger;
 };
+
+//ejemplo
+$container['ejemplo'] = function ($c) {
+    return 'Hola soy un ejemplo';
+};
