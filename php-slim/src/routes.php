@@ -15,7 +15,20 @@ $app->get('/[{name}]', function ($request, $response, $args) {
 // rutas agrupadas
 $app->group('/users', function () {
     $this->get('/getAll', function ($request, $response, $args) {
-        return 'Todos los users';
+        //return 'Todos los users';
+        
+        //var_dump($request->getHeaders());
+        //var_dump($request->getHeader('HTTP_USER_AGENT'));
+
+        //return $response->withStatus(500);
+
+        $usuarios=[
+           ['Nombre'=>'Jesus', 'user' => 'zeroidentidad'],
+           ['Nombre'=>'Vero', 'user' => 'vero3ar'],
+        ];
+
+        return $response->withHeader('Content-type', 'application/json')
+        ->write(json_encode($usuarios));
     });
 
     $this->get('/get/{id:[0-9]+}', function ($request, $response, $args) {
@@ -23,7 +36,9 @@ $app->group('/users', function () {
     });
 
     $this->post('/insert', function ($request, $response, $args) {
-        return 'Nuevo usuario creado';
+        //return 'Nuevo usuario creado';
+        var_dump($request->getParsedBody());
+        var_dump($request->getParsedBody()['nombre']);
     });
 
     $this->put('/update', function ($request, $response, $args) {
