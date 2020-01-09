@@ -52,11 +52,18 @@ $app->group('/users', function () {
     $this->any('/index', function ($request, $response, $args) {
         return 'Mediante cualquier metodo';
     });
-});
+})->add(new ExampleMiddleware());
+
 
 // rutas aisladas
 $app->get('/dogs/getAll', function ($request, $response, $args) {
     return 'Todos los dogs';
+})->add(function ($request, $response, $next) { //closure middleware (ruta/grupo)
+    $response->getBody()->write('BEFORE');
+    $response = $next($request, $response);
+    $response->getBody()->write('AFTER');
+
+    return $response;
 });
 
 $app->get('/dogs/get/{id:[0-9]+}', function ($request, $response, $args) {
