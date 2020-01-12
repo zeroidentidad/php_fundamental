@@ -17,3 +17,20 @@ $container['logger'] = function ($c) {
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], Monolog\Logger::DEBUG));
     return $logger;
 };
+
+// Database
+$container['db'] = function ($c) {
+    $connectionString = $c->get('settings')['connectionString'];
+
+    $pdo = new PDO($connectionString['dns'], $connectionString['user'], $connectionString['pass']);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+    return new FluentPDO($pdo);
+};
+
+// Models 
+$container['model'] = function ($c) {
+    return (object) [
+        'test' => new App\Model\TestModel($c->db)
+    ];
+};
