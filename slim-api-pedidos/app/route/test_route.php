@@ -35,8 +35,8 @@ $app->group('/test/', function () {
     
     $this->get('auth', function ($req, $res, $args) {
         $token = Auth::SignIn([
-            'Nombre' => 'Eduardo',
-            'Correo' => 'eduardo@anexsoft.com',
+            'Nombre' => 'Jesus',
+            'Correo' => 'jesus@mail.com',
             'Imagen' => null
         ]);
         
