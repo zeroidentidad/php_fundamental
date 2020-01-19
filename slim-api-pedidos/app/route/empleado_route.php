@@ -23,6 +23,15 @@ $app->group('/empleado/', function () {
     });
 
     $this->post('registrar', function ($req, $res, $args) {
+
+        $r = EmpleadoValidation::validate($req->getParsedBody());
+
+        if (!$r->response) {
+            return $res->withHeader('Content-type', 'application/json')
+                ->withStatus(422)
+                ->write(json_encode($r->errors));
+        }        
+
         return $res->withHeader('Content-type', 'application/json')
             ->write(
                 json_encode($this->model->empleado->registrar($req->getParsedBody()))
@@ -30,6 +39,15 @@ $app->group('/empleado/', function () {
     });
 
     $this->put('actualizar/{id}', function ($req, $res, $args) {
+
+        $r = EmpleadoValidation::validate($req->getParsedBody(), true);
+
+        if (!$r->response) {
+            return $res->withHeader('Content-type', 'application/json')
+                ->withStatus(422)
+                ->write(json_encode($r->errors));
+        }  
+
         return $res->withHeader('Content-type', 'application/json')
             ->write(
                 json_encode($this->model->empleado->actualizar($req->getParsedBody(), $args['id']))

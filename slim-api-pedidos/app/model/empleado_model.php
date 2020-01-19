@@ -54,8 +54,9 @@ class EmpleadoModel
 
     public function actualizar($data, $id)
     {
-        $data['Password'] = md5($data['Password']);
-
+        if(isset($data['Password'])){
+            $data['Password'] = md5($data['Password']);
+        }
         $this->db->update($this->table, $data, $id)
             ->execute();
             
