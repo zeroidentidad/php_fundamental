@@ -21,6 +21,17 @@ class EmpleadoValidation
             }
         }
 
+        $key = 'Nombre';
+        if (empty($data[$key])) {
+            $response->errors[$key][] = 'Este campo es obligatorio';
+        } else {
+            $value = $data[$key];
+
+            if (strlen($value) < 4) {
+                $response->errors[$key][] = 'Debe contener como mínimo 4 caracteres';
+            }
+        }        
+
         $key = 'Correo';
         if (empty($data[$key])) {
             $response->errors[$key][] = 'Este campo es obligatorio';
@@ -36,10 +47,17 @@ class EmpleadoValidation
         if (!$update) {
             if (empty($data[$key])) {
                 $response->errors[$key][] = 'Este campo es obligatorio';
+            } else {
+                $value = $data[$key];
+
+                if (strlen($value) < 4) {
+                    $response->errors[$key][] = 'Debe contener como mínimo 4 caracteres';
+                }
             }
         } else {
-            if (empty($data[$key])) {
+            if (!empty($data[$key])) {
                 $value = $data[$key];
+
                 if (strlen($value) < 4) {
                     $response->errors[$key][] = 'Debe contener como mínimo 4 caracteres';
                 }

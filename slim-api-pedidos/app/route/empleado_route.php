@@ -60,4 +60,4 @@ $app->group('/empleado/', function () {
                 json_encode($this->model->empleado->eliminar($args['id']))
             );
     });
-});
+})->add(new AuthMiddleware($app));
