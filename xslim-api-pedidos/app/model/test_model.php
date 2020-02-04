@@ -22,6 +22,8 @@ class TestModel
                          ->offset($p)
                          ->orderBy('id DESC')
                          ->fetchAll();
+        // /etc/my.cnf "sql_mode=" 
+        // https://stackoverflow.com/questions/23921117/disable-only-full-group-by               
         
         $total = $this->db->from($this->table)
                           ->select('COUNT(*) Total')

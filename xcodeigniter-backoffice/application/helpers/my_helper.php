@@ -46,7 +46,7 @@ function test_header_data()
 {
     return [
         'user' => (object) [
-            'Nombre' => 'Jesus',
+            'Nombre' => 'Jesus Ferrer',
             'Correo' => 'zero@mail.com'
         ]
     ];
