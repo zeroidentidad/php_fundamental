@@ -63,7 +63,47 @@ class Empleado extends CI_Controller {
         $this->load->view('footer');
 	}
     
-    public function guardar(){}    
+    public function guardar(){
+
+        $id = $this->input->post('id');
+
+        $data = [
+            'EsAdmin'  => $this->input->post('EsAdmin'),
+            'Nombre'   => $this->input->post('Nombre'),
+            'Correo'   => $this->input->post('Correo'),
+            'Password' => $this->input->post('Password'),
+            'Imagen'   => @encode_image_to_base64($_FILES['File']), // @ overwrite omision error
+        ];
+
+        try {
+            if (empty($id)) {
+                $this->em->registrar($data);
+            } else {
+                if (empty($data['Password'])) unset($data['Password']);
+                $this->em->actualizar($data, $id);
+            }
+        } catch (Exception $e) {
+            if ($e->getMessage() === RestApiErrorCode::UNPROCESSABLE_ENTITY) {
+                $errors = RestApi::getEntityValidationFieldsError();
+            }
+        }
+
+
+        if (count($errors) === 0) redirect('empleado');
+        else {
+            $this->load->view('header', $this->user);
+            $this->load->view('empleado/validation', [
+                'errors' => $errors
+            ]);
+            $this->load->view('footer');
+        }        
+
+    }    
     
-    public function eliminar($id){}
+    public function eliminar($id){
+
+        $this->em->eliminar($id);
+        redirect('empleado');       
+
+    }
 }
