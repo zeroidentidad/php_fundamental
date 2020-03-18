@@ -13,8 +13,6 @@ class Empleado extends CI_Controller {
         if($this->user['user'] === null) redirect('');
 
         $this->load->model('EmpleadoModel', 'em');
-
-
     }
     
     public function index($p = 0){

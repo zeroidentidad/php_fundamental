@@ -23,7 +23,7 @@
             <tr>
                 <td>
                     <?php if (!empty($m->Imagen)) : ?>
-                        <img style="width:60px;" src="<?php echo $m->Imagen; ?>" alt="?php echo $m->Nombre; ?>" />
+                        <img style="width:60px; height:60px;" src="<?php echo $m->Imagen; ?>" alt="<?php echo $m->Nombre; ?>" />
                     <?php endif; ?>
                 </td>
                 <td><?php echo $m->Nombre; ?></td>
