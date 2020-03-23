@@ -16,7 +16,7 @@ class ProductoModel
         $this->response = new Response();
     }
 
-    public function getAll($l, $p)
+    public function listar($l, $p)
     {
         $data = $this->db->from($this->table)
             ->limit($l)
@@ -35,11 +35,32 @@ class ProductoModel
         ];
     }
 
-    public function insert($data)
+    public function obtener($id)
     {
-        $data['Password'] = md5($data['Password']);
+        return $this->db->from($this->table, $id)
+            ->fetch();
+    }
+
+    public function registrar($data)
+    {
 
         $this->db->insertInto($this->table, $data)
+            ->execute();
+
+        return $this->response->SetResponse(true);
+    }
+
+    public function actualizar($data, $id)
+    {
+        $this->db->update($this->table, $data, $id)
+            ->execute();
+
+        return $this->response->SetResponse(true);
+    }
+
+    public function eliminar($id)
+    {
+        $this->db->deleteFrom($this->table, $id)
             ->execute();
 
         return $this->response->SetResponse(true);
