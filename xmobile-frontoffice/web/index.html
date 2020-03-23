@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="front-app">
+
+<head>
+    <meta charset="utf-8">
+    <title>Pedidos App</title>
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link href="assets/css/ratchet.min.css" rel="stylesheet">
+    <link href="assets/css/ratchet-theme-ios.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="loader"></div>
+    <!-- Make sure all your bars are the first things in your <body> -->
+    <header class="bar bar-nav">
+        <h1 class="title">Pedidos App</h1>
+    </header>
+
+    <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+    <div class="content" ng-view></div>
+    
+    <!-- Icons in standard bar fixed to the bottom of the screen -->
+    <div class="bar bar-standard bar-footer">
+      <p class="content-padded">by <a href="https://zeroidentidad.github.io/" target="_blank">Zero</a></p>
+    </div>
+    
+    <script src="assets/js/ratchet.min.js"></script>
+    <script src="angular/angular.min.js"></script>
+    <script src="angular/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <script src="services.js"></script>
+    <script src="router.js"></script>
+    <script src="controllers.js"></script>
+</body>
+</html>
