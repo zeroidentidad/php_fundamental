@@ -43,7 +43,6 @@ class ProductoModel
 
     public function registrar($data)
     {
-
         $this->db->insertInto($this->table, $data)
             ->execute();
 
@@ -65,4 +64,11 @@ class ProductoModel
 
         return $this->response->SetResponse(true);
     }
+
+    public function todo()
+    {
+        return $this->db->from($this->table)
+            ->orderBy('Nombre DESC')
+            ->fetchAll();
+    }    
 }

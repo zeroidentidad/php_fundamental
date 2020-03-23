@@ -13,6 +13,13 @@ $app->group('/producto/', function () {
             );
     });
 
+    $this->get('todo', function ($req, $res, $args) {
+        return $res->withHeader('Content-type', 'application/json')
+            ->write(
+                json_encode($this->model->producto->todo())
+            );
+    });
+
     $this->get('obtener/{id}', function ($req, $res, $args) {
         return $res->withHeader('Content-type', 'application/json')
             ->write(
@@ -21,7 +28,6 @@ $app->group('/producto/', function () {
     });
 
     $this->post('registrar', function ($req, $res, $args) {
-
         $r = ProductoValidation::validate($req->getParsedBody());
 
         if (!$r->response) {
@@ -29,8 +35,6 @@ $app->group('/producto/', function () {
                 ->withStatus(422)
                 ->write(json_encode($r->errors));
         }
-
-        //var_dump($req->getParsedBody());
 
         return $res->withHeader('Content-type', 'application/json')
             ->write(
@@ -46,6 +50,7 @@ $app->group('/producto/', function () {
                 ->withStatus(422)
                 ->write(json_encode($r->errors));
         }
+
         return $res->withHeader('Content-type', 'application/json')
             ->write(
                 json_encode($this->model->producto->actualizar($req->getParsedBody(), $args['id']))
