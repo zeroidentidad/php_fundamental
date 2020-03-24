@@ -1,18 +1,35 @@
-# Slim Framework 3 Skeleton Application
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+## Config script sql data base:
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+    - File: /sql/dbase.sql
 
-## Install the Application
+## Config data base src:
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+    - File: /src/settings.php
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+    - Ref: 
+```php
+        // Configuración de mi APP
+        'app_token_name'   => 'APP-TOKEN',
+        'connectionString' => [
+            'dns'  => 'mysql:host=localhost;dbname=dbpedidos;charset=utf8',
+            'user' => 'remoto',
+            'pass' => 'x1234567'
+        ]  
+```
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+## Config composer vendor:
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
+    - File: /composer.json
 
-That's it! Now go build something cool.
+    - Ref: composer install
+```json
+    "require": {
+        "php": ">=5.5.0",
+        "slim/slim": "~3.0",
+        "slim/php-view": "^2.0",
+        "monolog/monolog": "^1.17",
+        "firebase/php-jwt": "3.*",
+        "lichtner/fluentpdo": "1.1.*"
+    }
+```

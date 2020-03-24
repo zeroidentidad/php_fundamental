@@ -47,9 +47,9 @@ CREATE TABLE IF NOT EXISTS `pedido` (
 -- Dumping data for table dbpedidos.pedido: ~3 rows (approximately)
 /*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
 INSERT INTO `pedido` (`id`, `Estado_id`, `Cliente`, `Empleado_id`, `Total`, `Fecha`) VALUES
-	(1, 0, 'Jose Perez', 1, 35.00, '2016-03-05'),
-	(2, 0, 'Albero Moreyra', 1, 5.00, '2015-12-20'),
-	(3, 0, 'Juan Lopez', 2, 10.00, '2016-02-04');
+	(1, 0, 'Jose Perez', 1, 35.00, '2020-03-05'),
+	(2, 0, 'Albero Moreyra', 1, 5.00, '2019-12-20'),
+	(3, 0, 'Juan Lopez', 2, 10.00, '2020-02-04');
 /*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
 
 -- Dumping structure for table dbpedidos.producto
