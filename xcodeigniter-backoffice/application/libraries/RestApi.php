@@ -149,6 +149,6 @@ class RestApi
 }
 
 RestApi::initialize(
-    'http://localhost:8080/xslim-api-pedidos/public/',
+    'http://192.168.0.103/xslim-api-pedidos/public/',
     'APP-TOKEN'
 );

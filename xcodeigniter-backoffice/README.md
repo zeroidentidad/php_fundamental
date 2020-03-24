@@ -5,7 +5,7 @@
 
     - Ref: 
 ```php
-    $config['base_url'] = 'http://localhost:8080/xcodeigniter-backoffice/';
+    $config['base_url'] = 'http://localhost/xcodeigniter-backoffice/';
 ```
 
 
@@ -16,7 +16,7 @@
     - Ref: 
 ```php
     RestApi::initialize(
-        'http://localhost:8080/xslim-api-pedidos/public/',
+        'http://localhost/xslim-api-pedidos/public/',
         'APP-TOKEN'
     );
 ```

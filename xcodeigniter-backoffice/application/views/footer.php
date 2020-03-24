@@ -1,6 +1,8 @@
-            <div class="well well-sm text-center col-xs-12">
+            <div class="text-center col-xs-12">
+                <footer class="navbar-default navbar-fixed-bottom">
                 By <a href="https://zeroidentidad.github.io" target="_blank">Zero</a>
-            </div>    
+                </footer>
+            </div>
         </div>
     </div>
 </div>
