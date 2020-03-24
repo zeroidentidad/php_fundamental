@@ -14,6 +14,10 @@ class App extends Component {
         originWhitelist={['*']}
         javaScriptEnabled={true}
         mixedContentMode='always'
+        onError={syntheticEvent => {
+          const { nativeEvent } = syntheticEvent;
+          console.warn('WebView error: ', nativeEvent);
+        }}
       />
     );
   }  
