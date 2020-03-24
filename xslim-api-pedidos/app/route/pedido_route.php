@@ -44,8 +44,6 @@ $app->group('/pedido/', function () {
     });
 
     $this->post('guardar', function ($req, $res, $args) {
-
-
         $data = $req->getParsedBody();
 
         $r = PedidoValidation::validate($data);
@@ -61,4 +59,4 @@ $app->group('/pedido/', function () {
                 json_encode($this->model->pedido->guardar($data))
             );
     });
-});
+})->add(new AuthMiddleware($app));

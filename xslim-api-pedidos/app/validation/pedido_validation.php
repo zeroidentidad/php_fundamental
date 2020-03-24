@@ -16,8 +16,8 @@ class PedidoValidation
         } else {
             $value = $data[$key];
 
-            if (strlen($value) < 10) {
-                $response->errors[$key][] = 'Debe contener como mínimo 10 caracteres';
+            if (strlen($value) < 5) {
+                $response->errors[$key][] = 'Debe contener como mínimo 5 caracteres';
             }
         }
 

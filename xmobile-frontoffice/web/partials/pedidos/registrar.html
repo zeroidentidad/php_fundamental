@@ -1,0 +1,45 @@
+<div class="content-padded">
+    <input type="text" placeholder="Cliente" ng-model="Cliente" />
+
+    <select ng-model="Producto" style="background-color: azure;">
+        <option value="{{p.id}}" ng-repeat="p in Productos">{{p.Nombre}} - $ {{p.Precio}}</option>
+    </select>
+
+    <input type="text" placeholder="Cantidad" ng-model="Cantidad" />
+
+    <button class="btn btn-default btn-block" type="button" ng-click="agregarProducto()">
+        Agregar <span class="icon icon-plus"></span>
+    </button>
+</div>
+
+<div class="card">
+    <ul class="table-view">
+        <li class="table-view-cell" ng-repeat="d in Pedido.Detalle">
+            <div class="pedido-detalle">
+                <img src="{{ d.Imagen }}" class="pull-left" style="width:60px;" />
+                <strong class="producto">{{ d.Producto }}</strong>
+                <div class="descripcion">
+                    <b>Cnt.</b>: {{ d.Cantidad}} <b>P.U</b>: $ {{ d.PrecioUnitario}} <b>Total</b>: $ {{ d.Total}}
+                </div>
+            </div>
+            <button class="btn btn-negative" type="button" ng-click="retirarProducto()">
+                <span class="icon icon-trash"></span>
+            </button>
+        </li>
+        <li class="table-view-cell" ng-if="Pedido.Total > 0">
+            <div class="pedido-detalle">
+                <div class="total">
+                    TOTAL $ {{Pedido.Total}}
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="content-padded">
+    <a class="btn btn-block btn-primary" type="button" ng-click="registrarPedido()">Registrar</a>
+</div>
+
+<div class="bar bar-standard bar-footer-secondary">
+    <a href="#/pedidos" data-target="#" class="btn btn-block">Volver</button>
+</div>

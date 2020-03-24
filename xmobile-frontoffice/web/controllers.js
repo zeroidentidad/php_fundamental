@@ -1,6 +1,6 @@
 var authControllers = angular.module('authControllers', []),
-    pedidoControllers = angular.module('pedidoControllers', [])
-testControllers = angular.module('testControllers', []);
+    pedidoControllers = angular.module('pedidoControllers', []),
+    testControllers = angular.module('testControllers', []);
 
 // Auth Controller
 authControllers.controller('AuthLoginCtrl', ['$scope', 'restApi', '$location', 'auth',
@@ -14,20 +14,16 @@ authControllers.controller('AuthLoginCtrl', ['$scope', 'restApi', '$location', '
                     Password: $scope.Password
                 },
                 response: function (r) {
-
                     if (r.response) {
                         auth.setToken(r.result);
                         $location.path('/pedidos');
                     } else {
                         alert(r.message);
-
                     }
                 },
                 error: function (r) {
-
                 },
                 validationError: function (r) {
-
                 }
             });
         }
@@ -57,10 +53,8 @@ pedidoControllers.controller('PedidosListadoCtrl', ['$scope', 'restApi', 'auth',
                     $scope.model = r;
                 },
                 error: function (r) {
-
                 },
                 validationError: function (r) {
-
                 }
             });
         }
@@ -82,34 +76,29 @@ pedidoControllers.controller('PedidosRegistrarCtrl', ['$scope', 'restApi', 'auth
 
             // Cliente actualizaEstado
             $scope.Pedido.Cliente = $scope.Cliente
-            console.log($scope.Pedido);
+            //console.log($scope.Pedido);
+           
             //mandamos el pedido a la api
-
             restApi.call({
                 method: 'post',
                 url: 'pedido/guardar',
                 data: $scope.Pedido,
-
                 response: function (r) {
                     if (r.response) {
                         $location.path('/pedidos')
                     }
-
                 },
                 error: function (r) {
-
                 },
                 validationError: function (r) {
                     console.log(r);
                 }
             });
-
         };
 
         $scope.retirarProducto = function (i) {
             $scope.Pedido.Detalle.splice(i, 1);
             calculaTotal();
-
         };
 
         $scope.agregarProducto = function () {
@@ -136,7 +125,6 @@ pedidoControllers.controller('PedidosRegistrarCtrl', ['$scope', 'restApi', 'auth
                 Producto: productoSeleccionado.Nombre,
                 PrecioUnitario: productoSeleccionado.Precio,
                 Total: $scope.Cantidad * productoSeleccionado.Precio
-
             };
 
             if (indiceSiExiste === -1) {
@@ -162,10 +150,8 @@ pedidoControllers.controller('PedidosRegistrarCtrl', ['$scope', 'restApi', 'auth
                 url: 'producto/todo',
                 response: function (r) {
                     $scope.Productos = r;
-
                 },
                 error: function (r) {
-
                 },
                 validationError: function (r) {
                     console.log(r);
@@ -184,16 +170,13 @@ pedidoControllers.controller('PedidosVisualizarCtrl', ['$scope', 'restApi', '$lo
             restApi.call({
                 method: 'get',
                 url: 'pedido/estados',
-
                 response: function (r) {
                     $scope.estados = r;
                     obtener();
                 },
                 error: function (r) {
-
                 },
                 validationError: function (r) {
-
                 }
             });
         }
@@ -202,17 +185,13 @@ pedidoControllers.controller('PedidosVisualizarCtrl', ['$scope', 'restApi', '$lo
             restApi.call({
                 method: 'get',
                 url: 'pedido/obtener/' + $routeParams.id,
-
                 response: function (r) {
                     $scope.model = r;
                     $scope.Estado = r.Estado_id;
-
                 },
                 error: function (r) {
-
                 },
                 validationError: function (r) {
-
                 }
             });
 
@@ -224,19 +203,14 @@ pedidoControllers.controller('PedidosVisualizarCtrl', ['$scope', 'restApi', '$lo
                     data: {
                         Estado_id: $scope.Estado
                     },
-
                     response: function (r) {
                         if (r.response) {
                             $location.path('pedidos');
-
                         }
-
                     },
                     error: function (r) {
-
                     },
                     validationError: function (r) {
-
                     }
                 });
             }
@@ -255,10 +229,8 @@ testControllers.controller('TestCtrl', ['$scope', 'restApi', 'auth',
                 method: 'post',
                 url: 'test/valida',
                 response: function (r) {
-
                 },
                 error: function (r) {
-
                 },
                 validationError: function (r) {
                     console.log(r);
@@ -276,10 +248,8 @@ testControllers.controller('TestCtrl', ['$scope', 'restApi', 'auth',
                     validaAunteticacion();
                 },
                 error: function (r) {
-
                 },
                 validationError: function (r) {
-
                 }
             });
         }
@@ -292,10 +262,8 @@ testControllers.controller('TestCtrl', ['$scope', 'restApi', 'auth',
                     console.log(r);
                 },
                 error: function (r) {
-
                 },
                 validationError: function (r) {
-
                 }
             });
         }

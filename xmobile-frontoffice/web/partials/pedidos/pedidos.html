@@ -1,0 +1,25 @@
+<div class="user-dashboard">
+    <img src="assets/images/default-user.png" class="avatar" />
+    Bienvenido <b>{{ usuario }}</b>, desde aquí puedes gestionar los pedidos.
+    <div class="clear"></div>
+</div>
+
+<div class="card">
+    <a class="btn btn-block btn-primary remove-border-radius" href="#/pedidos/registrar" data-target="#">Nuevo pedido</a>
+    <ul class="table-view">
+        <li class="table-view-cell" ng-repeat="m in model">
+            <a class="navigate-right" href="#/pedidos/visualizar/{{ m.id }}" data-target="#">
+            <span ng-if="m.Estado_id == 0" class="pedido-estado pedido-estado-pendiente pull-left"></span>
+            <span ng-if="m.Estado_id == 1" class="pedido-estado pedido-estado-finalizado pull-left"></span>
+            <span ng-if="m.Estado_id == 2" class="pedido-estado pedido-estado-anulado pull-left"></span>
+            <b>Pedido #{{ m.id }}</b> - {{m.Cliente}}
+            <span class="badge">$ {{ m.Total }}</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Logout -->
+<div class="bar bar-standard bar-footer-secondary">
+  <a href="#/logout" data-target="#" class="btn btn-block btn-negative">Desconectarse</a>
+</div>

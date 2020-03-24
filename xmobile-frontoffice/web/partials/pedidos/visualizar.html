@@ -1,0 +1,44 @@
+<div class="card pedido-visualizar">
+    <ul class="table-view">
+        <li class="table-view-divider text-center">
+            <h1>Pedido #{{model.id}}</h1>
+        </li>
+        <li class="pedido-cabecera">
+            <dl>
+                <dt>Cliente</dt>
+                <dd>{{model.Cliente}}</dd>
+                <dt>Fecha</dt>
+                <dd>{{model.Fecha}}
+                </dd>
+            </dl>
+        </li>
+        <li class="table-view-divider">Estado</li>
+        <li class="pedido-estado-control">
+            <select ng-model="Estado" style="background-color: azure;" ng-change="actualizaEstado()">
+                <option ng-repeat="e in estados" value="{{e.id}}"> {{e.Valor}} </option>
+            </select>
+        </li>
+        <li class="table-view-divider">Detalle</li>
+        <li class="table-view-cell" ng-repeat="d in model.Detalle">
+            <div class="pedido-detalle">
+                <strong class="producto">{{d.Producto }}</strong>
+                <div class="descripcion">
+                    <b>Cnt.</b>: {{d.Cantidad}} <b>P.U</b>: $ {{d.PrecioUnitario}} <b>Total</b>: $ {{d.Total}}
+                </div>
+            </div>
+        </li>
+
+        <li class="table-view-divider">
+            <div class="pedido-detalle">
+                <div class="total">
+                    MXN {{model.Total}}
+                </div>
+            </div>
+        </li>
+
+    </ul>
+</div>
+
+<div class="bar bar-standard bar-footer-secondary">
+    <a href="#/pedidos" data-target="#" class="btn btn-primary btn-block">Volver</a>
+</div>

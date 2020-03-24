@@ -28,7 +28,6 @@ class PedidoModel
 
         //insertar detalle
         foreach ($data['Detalle'] as $d) {
-
             $this->db->insertInto('pedido_detalle', [
                 'Pedido_id' => $pedido_id,
                 'Producto_id' => $d['Producto_id'],
