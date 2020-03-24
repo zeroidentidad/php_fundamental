@@ -59,4 +59,17 @@ $app->group('/pedido/', function () {
                 json_encode($this->model->pedido->guardar($data))
             );
     });
+
+    $this->options('/{routes:.+}', function ($request, $response, $args) {
+        return $response;
+    });
+
+    $this->add(function ($req, $res, $next) {
+        $response = $next($req, $res);
+        return $response
+            ->withHeader('Access-Control-Allow-Origin', '*')
+            ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization, app-token')
+            ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    });
+
 })->add(new AuthMiddleware($app));
