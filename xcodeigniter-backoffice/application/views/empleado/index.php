@@ -15,7 +15,7 @@
             <th>Nombre</th>
             <th>Correo</th>
             <th style="width:100px;">Admin</th>
-            <th style="width:160px;"></th>
+            <th style="width:160px;">Acciones</th>
         </tr>
     </thead>
     <tbody>

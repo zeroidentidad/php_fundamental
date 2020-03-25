@@ -15,7 +15,7 @@ $types = array( 'array', 'object');
     <thead>
         <tr>
             <th>Periodo</th>
-            <th class="text-right" style="width:200px;">Total (USD)</th>
+            <th class="text-right" style="width:200px;">Total (MXN)</th>
         </tr>
     </thead>
     <tbody>

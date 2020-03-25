@@ -10,7 +10,7 @@ $types = array('array', 'object');
 
 <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
-            <h5>Productos</h5>
+            <h5>Listado Productos</h5>
           </div>
 <div class="widget-content nopadding">     
 <table id="DataTables_Table_0" class="table table-striped table-bordered  data-table">
@@ -19,7 +19,7 @@ $types = array('array', 'object');
             <th style="width:60px;"></th>
             <th>Nombre</th>
             <th style="width:160px;" class="text-right">Precio ($)</th>
-            <th style="width:160px;"></th>
+            <th style="width:160px;">Acciones</th>
         </tr>
     </thead>
     <tbody>
