@@ -5,7 +5,7 @@
         <option value="{{p.id}}" ng-repeat="p in Productos">{{p.Nombre}} - $ {{p.Precio}}</option>
     </select>
 
-    <input type="text" placeholder="Cantidad" ng-model="Cantidad" />
+    <input type="number" placeholder="Cantidad" ng-model="Cantidad" />
 
     <button class="btn btn-nav" type="button" ng-click="agregarProducto()">
         Agregar <span class="icon icon-plus"></span>
