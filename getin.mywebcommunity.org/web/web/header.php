@@ -23,12 +23,12 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><a href="#">Perfiles</a></li>
-				<li><a href="#">Comunidades</a></li>
-				<li><a href="#">Eventos</a></li>
+				<!-- <li><a href="#">Perfiles</a></li> -->
+				<li><a href="./comunidades.php">Comunidades</a></li>
+				<li><a href="./eventos.php">Eventos</a></li>
 				<li><a href="./chat.php"><b>Chat General</b></a></li>
 			</ul>
-			<form class="navbar-form navbar-left" action="#">
+			<!-- <form class="navbar-form navbar-left" action="#">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Buscar" name="search">
 					<div class="input-group-btn">
@@ -37,7 +37,7 @@
 						</button>
 					</div>
 				</div>
-			</form>
+			</form> -->
 			</div><!--/.nav-collapse -->
 		</div>
 	</nav>
