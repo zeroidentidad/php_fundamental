@@ -9,7 +9,7 @@
     "phroute/phroute": "^2.1",
     "twig/twig": "~1.0",
     "monolog/monolog": "^1.21",
-    "illuminate/database": "^5.3",
+    "illuminate/database": "^6.20",
     "respect/validation": "^1.1",
     "intervention/image": "^2.4",
     "dompdf/dompdf": "^0.8.3"
